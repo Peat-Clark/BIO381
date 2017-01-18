@@ -16,13 +16,7 @@ Lists:
 * [Assignment 1](test.html)   
 * [Assignment 2](http://www.cliffecology.com)   
 
-
 ![Moskt Butte](mbf.jpg)
-
-Fun fact
-
-I made a huge mistake
-
 ```{r}
 
 ```

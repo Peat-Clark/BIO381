@@ -1,0 +1,23 @@
+---
+title: "Bio381 Portfolio"
+author: "Peter Clark"
+date: "January 18, 2017"
+output: html_document
+---
+
+# Peter Clark
+
+## Computational Biology
+
+### This is how you make headings
+
+Lists:
+
+* [Assignment 1](test.html)   
+* [Assignment 2](http://www.cliffecology.com)   
+
+![Moskt Butte](mbf.jpg)
+```{r}
+
+```
+

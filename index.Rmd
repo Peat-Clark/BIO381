@@ -28,4 +28,4 @@ Here is a picture of an old study site in Oregon
 
 ```
 
-[homework 2](homework02.html)
+[homework 2](Homework02.html)

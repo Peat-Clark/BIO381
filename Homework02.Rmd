@@ -12,8 +12,6 @@ output: html_document
 
 A *decision tree* was used to explore the queston of structural and compositional enhancements of forests through long term manipulations. Variabilityin structure, composition, age classes, etc are important factors to forest ecological resilience (see above). A decision tree is use to explore logic based on binary (or categorical) responses. 
 
-<img src="Decision Tree.jpg" width="200" height="200" />
-
 ![second tool](Decision Tree.jpg)
 
 *Lookup Table* needs some work...

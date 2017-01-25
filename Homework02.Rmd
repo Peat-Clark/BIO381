@@ -10,3 +10,10 @@ This Path analysis the first tool that I used to structure my hypothesis
 ![first tool](Path.jpg)
 
 Logic tree
+![second tool](Decision Tree.jpg)
+
+Lookup Table
+![Third tool](Lookup table.jpg)
+
+Mock Data
+![fourth tool](Mock Data.jpg)

@@ -2,22 +2,30 @@
 title: "Bio381 Portfolio"
 author: "Peter Clark"
 date: "January 18, 2017"
-output: html_document
+output: 
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
 ---
 
 # Peter Clark
 
 ## Computational Biology
 
-### This is how you make headings
+I am a PhD student in Forestry and Natural Resources the Rubenstien School
+
+My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a cliff ecologist. See my website [here](http://www.cliffecology.com)
+
 
 Lists:
 
 * [Assignment 1](test.html)   
 * [Assignment 2](http://www.cliffecology.com)   
 
+Here is a picture of an old study site in Oregon
 ![Moskt Butte](mbf.jpg)
 ```{r}
 
 ```
 
+[homework 2](homework 02.html)

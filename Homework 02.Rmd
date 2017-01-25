@@ -1,0 +1,12 @@
+---
+title: "Homework 2"
+author: "Peter Clark"
+date: "January 25, 2017"
+output: html_document
+---
+
+This Path analysis the first tool that I used to structure my hypothesis
+
+![first tool](Path.jpg)
+
+Logic tree

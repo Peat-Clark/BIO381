@@ -36,6 +36,3 @@ Here is a picture of an old study site in Oregon
 ```{r}
 
 ```
-
-[homework 2](Homework02.html)
-[homework 3](Homework3Flowchart.html)

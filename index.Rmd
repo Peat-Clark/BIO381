@@ -16,6 +16,10 @@ I am a PhD student in Forestry and Natural Resources the Rubenstein School
 
 My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a cliff ecologist. See my website [here](http://www.cliffecology.com)
 
+**Homework Assignments**   
+
+* [homework 2](Homework02.html)   
+* [homework 3](Homework3Flowchart2.html)   
 
 Lists:
 
@@ -29,3 +33,4 @@ Here is a picture of an old study site in Oregon
 ```
 
 [homework 2](Homework02.html)
+[homework 3](Homework3Flowchart.html)

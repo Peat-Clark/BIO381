@@ -19,8 +19,13 @@ My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a c
 **Homework Assignments**   
 
 * [homework 2](Homework02.html)   
-* [homework 3](Homework3Flowchart2.html)   
 
+####Homework 3
+  * [Typhora Flowchart](Homework3Flowchart2.html)   
+  * [Beamer rmd file](Homework03_Beamer.Rmd)
+  * [Beamer PDF](Homework03_Beamer.pdf)
+  * [Old powerpoint converted](convert.pdf)
+  
 Lists:
 
 * [Assignment 1](test.html)   

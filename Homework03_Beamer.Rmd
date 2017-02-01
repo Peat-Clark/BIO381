@@ -1,0 +1,286 @@
+---
+title: "Lab Group Presentation"
+author: "Peter Clark"
+date: "February 1, 2017"
+output:
+  beamer_presentation:
+    colortheme: crane
+    fonttheme: professionalfonts
+    incremental: yes
+    theme: Madrid
+  ioslides_presentation:
+    incremental: yes
+  slidy_presentation:
+    incremental: yes
+---
+\begin{picture}(320,250)
+\put(00,00){\includegraphics[height=9cm]
+{slide1.jpg}}
+\put(00,00){\begin{minipage}[t]{1\linewidth}
+\end{minipage}}
+\end{picture}
+
+##
+\begin{picture}(320,250)
+\put(20,70){\includegraphics[height=5cm]
+{slide2.jpg}}
+\put(60,40){\includegraphics[height=1cm]
+{slide2b.jpg}}
+\put(200,00){\begin{minipage}[t]{1\linewidth}
+{\tiny Image courtesy of Scott St George, U. MN}
+\end{minipage}}
+\end{picture}
+
+## DENDROECOLOGY \small Stand Dynamics
+\begin{picture}(320,250)
+\put(160,70){\includegraphics[height=5cm]
+{slide3.jpg}}
+\put(00,175){\begin{minipage}[t]{1\linewidth}
+{\small 
+- Large and small scale disturbance   
+\bigskip
+\bigskip
+
+- Recruitment and declines   
+\bigskip
+\bigskip
+
+- Changes in demography, composition   
+
+and importance
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\tiny Biondi 1998.   
+Comparing tree-ring chronologies and repeated forest inventories    
+as forest monitoring tools. Ecological Applications}
+\end{minipage}}
+\end{picture}
+
+##
+\begin{picture}(320,250)
+\put(00,30){\includegraphics[height=6cm]
+{slide4.jpg}}
+\put(00,00){\begin{minipage}[t]{1\linewidth}
+\end{minipage}}
+\end{picture}
+
+##DENDROPYROLOGY \small Fire Scarred trees
+\begin{picture}(320,250)
+\put(170,125){\includegraphics[height=4.25cm]
+{slide6A.jpg}}
+\put(140,35){\includegraphics[height=4cm]
+{slide6b.jpg}}
+\put(00,175){\begin{minipage}[t]{1\linewidth}
+{\small 
+- Scale (spatial and temporal)
+\bigskip
+\bigskip
+
+- Frequency, Intensity, Seasonality   
+\bigskip
+\bigskip
+
+- Drivers (climate, fuels)
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\tiny Figures (top) fire history from Sky Islands (AZ), (bottom) superposed epoch analysis showing relationship between drought conditions and fire}
+\end{minipage}}
+\end{picture}
+
+##
+\begin{picture}(320,250)
+\put(30,10){\includegraphics[height=8cm]
+{slide7.jpg}}
+\put(100,00){\begin{minipage}[t]{1\linewidth}
+{\tiny Image courtesy of  Daniel Bishop, Harvard Forest / Columbia University}
+\end{minipage}}
+\end{picture}
+
+## DENDROENTOMOLOGY \small Trees limited by insects
+\begin{picture}(320,250)
+\put(150,130){\includegraphics[height=4cm]
+{slide8a.jpg}}
+\put(150,40){\includegraphics[height=3cm]
+{slide8b.jpg}}
+\put(00,190){\begin{minipage}[t]{1\linewidth}
+{\small 
+- Defoliators (spruce budworm,   
+
+forest tent caterpillar, gypsy moth)
+
+\bigskip
+\bigskip
+
+- Cambium feeder (spruce beetle,   
+
+mountain pine beetle)   
+\bigskip
+\bigskip
+
+- Root parasite (periodical cicadas)
+\bigskip
+\bigskip
+\bigskip
+\bigskip
+
+\tiny Swetnam and Lynch. 1993 Multicentury, Regional-Scale Patterns of Western Spruce Budworm Outbreaks. Ecological Monographs}
+\end{minipage}}
+\end{picture}
+
+## Snow and Insect Outbreaks in Central Oregon
+\begin{picture}(320,250)
+\put(160,50){\includegraphics[height=6cm]
+{slide9.jpg}}
+\put(00,200){\begin{minipage}[t]{1\linewidth}
+{\tiny Collaborators: Dr. Jim Speer (*Indiana State University*),   
+
+Dr. Lawrence Winship (*Hampshire College*)
+\bigskip
+\bigskip
+
+Clark, P.W. , J. H. Speer, L.W. Winship. 2017   
+
+**Extracting Climate and Pandora Moth Outbreaks**   
+
+**from A 1,500-Year Long Ponderosa Pine Chronology**
+
+**from Central Oregon**. Tree-Ring Research
+\bigskip
+\bigskip
+
+Related Works: 
+Speer, J. H., T. W. Swetnam, B. E. Wickman, and A.   
+
+Youngblood. 2001. Changes in Pandora moth outbreak   
+
+dynamics during the past 622 years. Ecology
+\bigskip
+
+
+Speer, J. H. and R. L. Holmes. 2004. Effects of   
+
+Pandora moth outbreaks on ponderosa pine wood volume.   
+
+Tree-Ring Research}
+\end{minipage}}
+\end{picture}
+
+##
+\begin{picture}(320,250)
+\put(10,10){\includegraphics[height=8cm]
+{slide10.jpg}}
+\put(20,110){\begin{minipage}[t]{1\linewidth}
+{\LARGE  \color{white} Inner Ring: 435CE   
+
+Outer Ring 985CE}
+\end{minipage}}
+\end{picture}
+
+## PANDORA MOTH
+\begin{picture}(320,250)
+\put(10,20){\includegraphics[height=7.5cm]
+{slide11.jpg}}
+\put(100,00){\begin{minipage}[t]{1\linewidth}
+\end{minipage}}
+\end{picture}
+
+## PANDORA MOTH OUTBREAK SIGNAL IN TREE RINGS
+\begin{picture}(320,250)
+\put(135,20){\includegraphics[height=8cm]
+{slide12a.jpg}}
+\put(00,190){\begin{minipage}[t]{1\linewidth}
+{\small 
+- Year 1: Reduced latewood
+\bigskip
+\bigskip
+
+- Year 2: Fifty percent reduction in   
+
+ring width compared to Y-1
+\bigskip
+\bigskip
+
+- Years 3 through 4-20: gradually   
+
+resume to normal growth}
+\end{minipage}}
+\end{picture}
+
+## PANDROA MOTH AND SNOWPACK RECONSTRUCTED
+\begin{picture}(320,250)
+\put(175,80){\includegraphics[height=5cm]
+{slide13.jpg}}
+\put(00,220){\begin{minipage}[t]{1\linewidth}
+{\small 
+**A** The 1,376 year reconstruction of 
+
+Fall to Spring Drought
+\bigskip
+\bigskip
+
+**B** A 5-year running average of the 
+
+final chronology with pandora moth 
+
+outbreaks shaded in black. 
+\bigskip
+\bigskip
+
+**C** The number of trees recording 
+
+pandora moth outbreaks (bars) as 
+
+compared to total sample depth. The 
+
+gray bars show the timing of pandora 
+
+moth outbreaks across all three graphs}
+\end{minipage}}
+\end{picture}
+
+## IMPLICATIONS
+\begin{picture}(320,250)
+\put(160,75){\includegraphics[height=4.5cm]
+{slide14.jpg}}
+\put(00,200){\begin{minipage}[t]{1\linewidth}
+{\small 
+Ponderosa pine extremely long 
+
+lived and preserved on MBF
+\bigskip
+\bigskip
+
+Contributes to natural range of 
+
+outbreak variability of endemic 
+
+insect 
+\bigskip
+\bigskip
+
+Methods for decoupling limit 
+
+factors in tree growth}
+\end{minipage}}
+\end{picture}
+
+##QUESTIONS?
+\begin{picture}(320,250)
+\put(00,20){\includegraphics[height=8cm]
+{slide15.jpg}}
+\put(00,00){\begin{minipage}[t]{1\linewidth}
+\end{minipage}}
+\end{picture}
+
+
+
+
+
+
+

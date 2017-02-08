@@ -18,9 +18,14 @@ My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a c
 
 #Homework Assignments
 
+####Homework 1
+  
+  * [Assignment 1](test.html)   
+  * [Assignment 2](http://www.cliffecology.com)   
+
 ####Homework 2
 
-* [homework 2](Homework02.html)   
+  * [homework 2](Homework02.html)   
 
 ####Homework 3
   * [Typhora Flowchart](Homework3Flowchart2.html)   
@@ -32,11 +37,6 @@ My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a c
   * [Using csv files in R](assignment4.html)   
   * [Working with Regular Expressions](assignment4b.html)
 
-  
-Lists:
-
-* [Assignment 1](test.html)   
-* [Assignment 2](http://www.cliffecology.com)   
 
 Here is a picture of an old study site in Oregon
 ![Moskt Butte](mbf.jpg)

@@ -1,0 +1,17 @@
+---
+title: "Homework4"
+author: "Peter Clark"
+date: "February 8, 2017"
+output: html_document
+---
+
+
+```{r}
+Data<-read.table("farmwoodlot_BeachOak.csv", header=T, sep=",",stringsAsFactors=F)
+str(Data)
+table(Data$Species)
+summary(Data)
+head(Data)
+tail(Data)
+```
+

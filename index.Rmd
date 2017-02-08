@@ -16,7 +16,9 @@ I am a PhD student in Forestry and Natural Resources the Rubenstein School
 
 My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a cliff ecologist. See my website [here](http://www.cliffecology.com)
 
-**Homework Assignments**   
+#Homework Assignments
+
+####Homework 2
 
 * [homework 2](Homework02.html)   
 
@@ -25,6 +27,11 @@ My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a c
   * [Beamer rmd file](Homework03_Beamer.Rmd)
   * [Beamer PDF](Homework03_Beamer.pdf)
   * [Old powerpoint converted](convert.pdf)
+
+####Homework 4
+  * [Using csv files in R](assignment4.html)   
+  * [Working with Regular Expressions](assignment4b.html)
+
   
 Lists:
 

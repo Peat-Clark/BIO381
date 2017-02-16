@@ -9,9 +9,9 @@ output: html_document
 #### Questions 1
 Suppose x = 1.1, a = 2.2, and b = 3.3. Assign each expression to the value of the variable z and print the value stored in z.   
 
-  a) x^(a^b)   
-  b) (x^a)^b   
-  c) 3x^3 + 2x^2 + 1
+  a) $$x^(a^b)$$   
+  b) $$(x^a)^b$$   
+  c) $$3x^3 + 2x^2 + 1$$
   d) The digit in the second place of z 
   
 
@@ -140,10 +140,10 @@ z5[z5%%2!=0 & z5%%3!=0 & z5%%7!=0]
 Create a vector z of 1000 random uniform numbers.
 create a vector that contains 3 numbers: the proportion of the numbers in z that are less than 0.10, greater than 0.90, and between 0.45 and 0.55.
 Making successive copies of z, transform your vector of uniform numbers in the following ways:   
-  a) log (base 10) of z   
-  b) z^2   
-  c) e^z   
-  d) square root of z
+  a) $$log (base 10) of z$$   
+  b) $$z^2$$   
+  c) $$e^z$$   
+  d) $$square root of z$$
   
 for each case calculate your vector of 3 numbers to get the new proportions.
 

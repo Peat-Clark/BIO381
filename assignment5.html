@@ -128,11 +128,11 @@ $(document).ready(function () {
 <h4>Questions 1</h4>
 <p>Suppose x = 1.1, a = 2.2, and b = 3.3. Assign each expression to the value of the variable z and print the value stored in z.</p>
 <ol style="list-style-type: lower-alpha">
-<li>x<sup>(a</sup>b)<br />
+<li><span class="math display">\[x^(a^b)\]</span><br />
 </li>
-<li>(x<sup>a)</sup>b<br />
+<li><span class="math display">\[(x^a)^b\]</span><br />
 </li>
-<li>3x^3 + 2x^2 + 1</li>
+<li><span class="math display">\[3x^3 + 2x^2 + 1\]</span></li>
 <li>The digit in the second place of z</li>
 </ol>
 <pre class="r"><code>x&lt;-1.1
@@ -183,24 +183,24 @@ paste(as.character(z2c), collapse=&quot;,&quot;)</code></pre>
 </div>
 <div id="question-3" class="section level4">
 <h4>Question 3</h4>
-<p>Create a vector of two random uniform numbers. In a spatial map, these can be interpreted as x and y coordinates that give the location of an individual (such as a marked forest tree in a plot that has been mapped). Using one of R’s inverse trigonometry functions (asin(), acos(), or atan()), convert these numbers into polar coordinates (If you don’t know what polar coordinates are, read about them on the web or in your calculus textbook).</p>
+<p>Create a vector of two random uniform numbers. In a spatial map, these can be interpreted as x and y coordinates that give the location of an individual (such as a marked forest tree in a plot that has been mapped). Using one of Râs inverse trigonometry functions (asin(), acos(), or atan()), convert these numbers into polar coordinates (If you donât know what polar coordinates are, read about them on the web or in your calculus textbook).</p>
 <pre class="r"><code>z3&lt;-runif(2)
 x&lt;-z3[1]
 y&lt;-z3[2]
 print(x)</code></pre>
-<pre><code>## [1] 0.8272549</code></pre>
+<pre><code>## [1] 0.5156581</code></pre>
 <pre class="r"><code>print(y)</code></pre>
-<pre><code>## [1] 0.6568726</code></pre>
+<pre><code>## [1] 0.188855</code></pre>
 <pre class="r"><code>r&lt;-sqrt((x^2)+(y^2)) # r is the length of the straight line
 print(r)</code></pre>
-<pre><code>## [1] 1.05633</code></pre>
+<pre><code>## [1] 0.5491534</code></pre>
 <pre class="r"><code>t&lt;-atan(y/x)   # t is theta or angle
 print(t)</code></pre>
-<pre><code>## [1] 0.6710956</code></pre>
+<pre><code>## [1] 0.3510693</code></pre>
 </div>
 <div id="question-4" class="section level3">
 <h3>Question 4</h3>
-<p>Suppose that queue &lt;- c(“sheep”, “fox”, “owl”, “ant”) and that queue represents the animals that are lined up to enter Noah’s Ark, with the sheep at the front of the line. Using R expressions, update the queue successively as</p>
+<p>Suppose that queue &lt;- c(“sheep”, “fox”, “owl”, “ant”) and that queue represents the animals that are lined up to enter Noahâs Ark, with the sheep at the front of the line. Using R expressions, update the queue successively as</p>
 <ol style="list-style-type: lower-alpha">
 <li>the serpent arrives;<br />
 </li>
@@ -261,15 +261,15 @@ z5[z5%%2!=0 &amp; z5%%3!=0 &amp; z5%%7!=0]</code></pre>
 <div id="question-6" class="section level4">
 <h4>Question 6</h4>
 <p>Create a vector z of 1000 random uniform numbers. create a vector that contains 3 numbers: the proportion of the numbers in z that are less than 0.10, greater than 0.90, and between 0.45 and 0.55. Making successive copies of z, transform your vector of uniform numbers in the following ways:<br />
-a) log (base 10) of z<br />
-b) z^2<br />
-c) e^z<br />
-d) square root of z</p>
+a) <span class="math display">\[log (base 10) of z\]</span><br />
+b) <span class="math display">\[z^2\]</span><br />
+c) <span class="math display">\[e^z\]</span><br />
+d) <span class="math display">\[square root of z\]</span></p>
 <p>for each case calculate your vector of 3 numbers to get the new proportions.</p>
 <pre class="r"><code>z6&lt;-runif(1000)
 z6vector&lt;-c(mean(z6 &lt; 0.1), mean(z6 &gt; 0.9), mean(z6 &gt;0.45 &amp; z6&lt;0.55))
 print(z6vector)</code></pre>
-<pre><code>## [1] 0.113 0.107 0.096</code></pre>
+<pre><code>## [1] 0.101 0.113 0.111</code></pre>
 <pre class="r"><code># problem a
 
 z6Log&lt;-log10(z6)
@@ -281,7 +281,7 @@ print(z6vectorLog)</code></pre>
 z6sqrt&lt;-sqrt(z6)
 z6vectorSQRT&lt;-c(mean(z6sqrt &lt; 0.1), mean(z6sqrt &gt; 0.9), mean(z6sqrt &gt;0.45 &amp; z6sqrt&lt;0.55))
 print(z6vectorSQRT)</code></pre>
-<pre><code>## [1] 0.007 0.209 0.103</code></pre>
+<pre><code>## [1] 0.013 0.170 0.115</code></pre>
 <pre class="r"><code># problem C
 
 z6E&lt;-exp(z6)

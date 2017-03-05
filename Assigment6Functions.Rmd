@@ -1,0 +1,295 @@
+---
+title: "Assignment 6 Functions"
+author: "Peter Clark"
+date: "February 22, 2017"
+output: html_document
+---
+
+### '$'
+#### Peter Clark
+
+The dollar sign (**$**) is an operator that can be used on matrices, arrays and lists and can "call for" or extract specific items by name in a data frame. This can be useful if you want to inspect a specific element of your dataframe (a column, a cell) or to search the output from a model.
+
+**Usage**
+
+*x$name* where *x* is the object from which to extract and *name* is a character string contained within *x* 
+
+```{r}
+# Call for a column in a dataframe
+
+soil <- data.frame(1:14, 5) # create a dataframe
+colnames(soil) <- c("pH","Ca") # assign column names
+soil$pH # calls for the data in column titled "pH"
+
+#----- Another example like the one above
+x = list(a = rnorm(5), b = rnorm(7), c = rnorm(10))
+str(x)
+x$a
+
+#-------------------
+
+# Calling for statistics (here, p-value in a linear model)
+varY <- runif(10) # assign random numbers to x and y
+varX <- runif(10)
+myModel <- lm(varY~varX) # linear model running regresion using the 10 x,y, variables
+names(summary(myModel)) # use this to search for other names in the lists in your model summary
+summary(myModel)$coefficients # calls out the statistics from one list in the summary statistics. 
+# Since this is a matrix, you can call for an element (cell)
+summary(myModel)$coefficients[2,4] # calls for the p value, found in the second row, forth column
+
+```
+
+
+### 'c()'
+#### Peter Clark
+
+**c()** is a function which combines (or more specificially, concatenate) its arguments and returns a vector or list (a one dimensional array). When you use **c()** to create a vector, what you are actually doing is combining together a series of 1-length vectors. You may also combine vectors and lists.
+
+**Usage**
+
+*c(...)* where ... are objects to be concatenated
+
+
+```{r}
+# combining two variables
+k <- (1:5)
+b <- (10:20) # k and b pruduce a sequence function for two different sets of numbers
+d <- c(k,b) # c combines those two sequences together and returns them as one list
+print(d)
+
+# combining more
+e<-c(c(1, 2), c(d))
+print(e)
+
+# combining a vector and list
+x = 1:10  # create a vector variable 
+is.vector(x) # is it a vector? Yes indeed
+y = 3*x+rnorm(length(x)) # create a new vector
+is.vector(y) # still a vector
+z = lm(y ~ x) # running these as a linear model is not a vector, but is a list
+is.list(z) # the proof is in the pudding
+combine = c(x, z) # combine a vector and list creates a table
+print(combine)
+
+```
+
+### '>'
+#### Peter Clark
+
+The greater than operator **>** is a relational operator that allows for the comparison of atomic vectors. The output is binary (e.g., True False). This symbol may be combined with other operators (relational, assignment) to further refine your comparison.
+
+**Usage**
+
+*x > y*
+
+```{r}
+# How it works 
+x <- 1:10 # produces a sequence of numbers
+x > 8  # of variable x, lets see how many values are greater than 8. Produces a TRUE/FALSE output
+x < 5
+
+#---------
+# may be used to compare two values, where
+x <- 5
+y <- 16
+x<y 
+x>y
+x<=5 # > may be combined with other symbols to refine your comparison. Here we examine "greater than or equal to"
+# see help function for complete list of relational operators
+
+```
+
+### '=='
+#### Peter Clark
+
+The logical vector **==** is a relational operator that compares values for exact equality. It can be used on atomic vectors and results in a binary output (e.g., True False). 
+
+**Useage**
+
+*x == y* compares two variabes for exact equality
+   
+
+```{r}
+x1 <- 5 - 3
+x2 <- 4 - 1
+x1 == x2    # is x1 exactly equal to x2? No, so R returns FALSE
+
+x1a <- 10-2
+x2a <- 12-4
+x1a == x2a # is x1A exactly equal to x2A? Yes, so R returns TRUE
+
+```
+
+### 'length'
+#### Peter Clark
+
+The **length** function provides or allows you to set the length of an object (vector,lists) in the form of an integer. Note: If the parameter is a matrix or dataframe, it returns the number of variables (columns)
+
+**Usage**
+
+*length(x) returns* the length of a variable as an integer
+
+*length(x) <- value* assigns the length of an object (vector, list), where "value" is a non-negative integer. Decimals (doubles) will be rounded down
+
+```{r}
+
+# assign the length of a vector of 10, trucating at xth component
+x<-1:100
+length(x) <- 10
+x
+
+# examine a vector is by returning its length (count)
+x<-1:100
+length(x)
+
+# derive the length of two vectors to look at differences
+z<-(1:30)
+p<-(1:20)
+length(z)-length(p)
+
+```
+
+### 'write.delim'
+#### Peter Clark
+
+In package *"caroline"*, this function allows you to write a tab delimited text file. This is a wrapper for *write.table* with the same options as *read.delim*. Files are saved to your working directory.
+
+**Usage**
+
+*write.delim(df, file, quote = FALSE, row.names = FALSE, sep = "\t", ...)*
+
+**Arguments**   
+
+  * df:	   a dataframe.   
+  * file	   outputfile path.   
+  * quote	    should elements of the dataframe be quoted for output.   
+  * row.names	   should the output include rownames.   
+  * sep	   the delimiter between fields.   
+  * ...	   other parameters passed to write.table.
+
+```{r}
+library(caroline) # run package caroline
+x <- data.frame(a = I("a \" quote"), b = pi) # assigns dataframe to variable x
+write.delim(x, file = "mydata.tab") # writes dataframe for x to tab delimited file saved to your working directory
+
+```
+
+### 'sprintf'
+#### Peter Clark
+
+This function allows for the creation of a character string that can be incoporated into a vector. It returns a character vector containing a formatted combination of text and variable values. While the paste function is more useful for vectors, **sprintf** is useful for precise control of the output. A wrapper for *c()* function
+
+**Usage**
+
+*sprintf(fmt, ...)* where fmt is a character string up to 8192 characters and ... are the values to be incorporated in the the fmt string
+
+**Subuse**   
+
+   * To substitute in a string or string variable, use *%s*   
+   * For integers, use *%d* or a variant   
+   * Many other options exist: For floating-point numbers, use *%f* for standard notation, and *%e* or *%E* for exponential notation. You can also use *%g* or *%G* for a "smart" formatter that automatically switches between the two formats, depending on where the significant digits are.
+
+```{r}
+
+x <- 2349
+y <- 1111
+z <- 2
+sprintf("Substitute in a string or number: %s", x)   # %s substitutes x into the string
+ 
+sprintf("Can have multiple %s %E occurrences %s", x, z, y, "- got it?")
+
+```
+
+
+### 'str'
+#### Peter Clark
+
+**str** is a diagnostic function that allows you to compactly display the "structure" of an R object. This is a concise alternative to the summary function. Ideally, only one line for each 'basic' structure is displayed. It is especially well suited to compactly display the (abbreviated) contents of lists. The basic goal of using str allows you to answer "whats in this object"?
+
+**Usage**
+
+*str(object, ...)*
+
+See ?help for greater detail of arguments
+
+
+```{r}
+# examples include:
+
+str(1:12) # show the structure of a sequence
+
+str(str) # show the arguement structure of a function
+
+# show the structure of a linear model
+varY <- runif(10) 
+varX <- runif(10)
+myModel <- lm(varY~varX) 
+str(myModel)
+
+```
+
+### 'as.logical'
+#### Peter Clark
+
+
+One of the logical vectors, **as.logical** creates or tests for objects of type "logical". It attempts to coerce its argument to be of logical type, returning a *TRUE* or *FALSE*. Values <0 are *FALSE* and those >1 are *TRUE*. **as.logical** strips attributes including names. Character strings *c("T", "TRUE", "True", "true")* are regarded as true, *c("F", "FALSE", "False", "false")* as false, and all others as *NA*.
+
+**Usage**
+
+*as.logical(x, ...)* where *x* is the object to be coerced or tested
+
+```{r}
+
+a <- 3
+x <- as.logical(a > 2) # coereces the variable a into a logical (TRUE, FALSE) if the argument is met
+print(x)          # let's see the output
+if(x) TRUE    # returns a logical if the parements in the if statement are true 
+
+x <- 0:6
+as.logical(x) # coerce each bit in sequence to logical
+```
+
+### 'tan'
+#### Peter Clark
+
+
+One of the *Trig* fucntions, the **tan()** function computes the tangent value of numeric value. See Trig in help menu for a suite of other arguments
+Note: R always works with angles in radians, not in degrees. 
+
+**Usage**
+
+*tan(x)* where x is a numeric value, array or vector
+
+
+```{r}
+x <-pi
+tan(x) # tangent value of pi
+
+tan(pi) # or just enter the value you desire 
+
+tan(120*pi/180) # to calculate the cosine of an angle of 120 degrees, you must use pi, since R doesn't work in degrees
+
+x <- c(pi, pi/4, 0)
+tan(x) # combine values to recive multiple computations at once
+
+```
+
+
+### 'cos'
+#### Peter Clark
+
+One of the *Trig* functions, the **cos()** function computes the cosine value of numeric value. See Trig in help menu for a suite of other arguments
+Note: R always works with angles in radians, not in degrees.
+
+**Usage**
+
+*cos(x)* where *x* is a numeric value, array or vector
+
+```{r}
+cos(120*pi/180) #  since R doesn't work in degrees, use pi/180 to calculate the cosine of an angle of 120 degrees 
+
+x <- c(pi, pi/4, pi/3)
+cos(x)
+
+```
+

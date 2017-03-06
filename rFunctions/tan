@@ -1,0 +1,23 @@
+### 'tan'
+#### Peter Clark
+
+
+One of the *Trig* fucntions, the **tan()** function computes the tangent value of numeric value. See Trig in help menu for a suite of other arguments
+Note: R always works with angles in radians, not in degrees. 
+
+**Usage**
+
+*tan(x)* where x is a numeric value, array or vector
+
+
+```{r}
+x <-pi
+tan(x) # tangent value of pi
+
+tan(pi) # or just enter the value you desire 
+
+tan(120*pi/180) # to calculate the cosine of an angle of 120 degrees, you must use pi, since R doesn't work in degrees
+
+x <- c(pi, pi/4, 0)
+tan(x) # combine values to recive multiple computations at once
+```

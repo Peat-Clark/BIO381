@@ -1,0 +1,16 @@
+### 'cos'
+#### Peter Clark
+
+One of the *Trig* functions, the **cos()** function computes the cosine value of numeric value. See Trig in help menu for a suite of other arguments
+Note: R always works with angles in radians, not in degrees.
+
+**Usage**
+
+*cos(x)* where *x* is a numeric value, array or vector
+
+```{r}
+cos(120*pi/180) #  since R doesn't work in degrees, use pi/180 to calculate the cosine of an angle of 120 degrees 
+
+x <- c(pi, pi/4, pi/3)
+cos(x)
+```

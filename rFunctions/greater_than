@@ -1,0 +1,24 @@
+### '>'
+#### Peter Clark
+
+The greater than operator **>** is a relational operator that allows for the comparison of atomic vectors. The output is binary (e.g., True False). This symbol may be combined with other operators (relational, assignment) to further refine your comparison.
+
+**Usage**
+
+*x > y*
+
+```{r}
+# How it works 
+x <- 1:10 # produces a sequence of numbers
+x > 8  # of variable x, lets see how many values are greater than 8. Produces a TRUE/FALSE output
+x < 5
+
+#---------
+# may be used to compare two values, where
+x <- 5
+y <- 16
+x<y 
+x>y
+x<=5 # > may be combined with other symbols to refine your comparison. Here we examine "greater than or equal to"
+# see help function for complete list of relational operators
+```

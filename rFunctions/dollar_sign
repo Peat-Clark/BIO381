@@ -1,0 +1,32 @@
+### '
+#### Peter Clark
+
+The dollar sign (**$**) is an operator that can be used on matrices, arrays and lists and can "call for" or extract specific items by name in a data frame. This can be useful if you want to inspect a specific element of your dataframe (a column, a cell) or to search the output from a model.
+
+**Usage**
+
+*x$name* where *x* is the object from which to extract and *name* is a character string contained within *x* 
+
+```{r}
+# Call for a column in a dataframe
+
+soil <- data.frame(1:14, 5) # create a dataframe
+colnames(soil) <- c("pH","Ca") # assign column names
+soil$pH # calls for the data in column titled "pH"
+
+#----- Another example like the one above
+x = list(a = rnorm(5), b = rnorm(7), c = rnorm(10))
+str(x)
+x$a
+
+#-------------------
+
+# Calling for statistics (here, p-value in a linear model)
+varY <- runif(10) # assign random numbers to x and y
+varX <- runif(10)
+myModel <- lm(varY~varX) # linear model running regresion using the 10 x,y, variables
+names(summary(myModel)) # use this to search for other names in the lists in your model summary
+summary(myModel)$coefficients # calls out the statistics from one list in the summary statistics. 
+# Since this is a matrix, you can call for an element (cell)
+summary(myModel)$coefficients[2,4] # calls for the p value, found in the second row, forth column
+```

@@ -141,11 +141,11 @@ soil$pH # calls for the data in column titled &quot;pH&quot;</code></pre>
 x = list(a = rnorm(5), b = rnorm(7), c = rnorm(10))
 str(x)</code></pre>
 <pre><code>## List of 3
-##  $ a: num [1:5] 0.324 0.346 -1.247 1.045 -0.417
-##  $ b: num [1:7] -0.2155 -0.4643 -0.0773 -0.4181 0.9246 ...
-##  $ c: num [1:10] 1.639 0.143 -0.725 0.791 1.224 ...</code></pre>
+##  $ a: num [1:5] -0.2583 0.5189 -0.8531 0.1003 0.0565
+##  $ b: num [1:7] -0.837 0.53 -1.28 -0.114 0.357 ...
+##  $ c: num [1:10] 0.074 0.797 -0.981 -1.112 -0.345 ...</code></pre>
 <pre class="r"><code>x$a</code></pre>
-<pre><code>## [1]  0.3235448  0.3458135 -1.2470579  1.0454861 -0.4165898</code></pre>
+<pre><code>## [1] -0.25825984  0.51894040 -0.85311800  0.10027991  0.05648319</code></pre>
 <pre class="r"><code>#-------------------
 
 # Calling for statistics (here, p-value in a linear model)
@@ -157,12 +157,12 @@ names(summary(myModel)) # use this to search for other names in the lists in you
 ##  [5] &quot;aliased&quot;       &quot;sigma&quot;         &quot;df&quot;            &quot;r.squared&quot;    
 ##  [9] &quot;adj.r.squared&quot; &quot;fstatistic&quot;    &quot;cov.unscaled&quot;</code></pre>
 <pre class="r"><code>summary(myModel)$coefficients # calls out the statistics from one list in the summary statistics. </code></pre>
-<pre><code>##               Estimate Std. Error    t value   Pr(&gt;|t|)
-## (Intercept)  0.5853637  0.2193305  2.6688661 0.02841215
-## varX        -0.3785639  0.4175890 -0.9065464 0.39113371</code></pre>
+<pre><code>##              Estimate Std. Error  t value   Pr(&gt;|t|)
+## (Intercept) 0.2864278  0.1401326 2.043977 0.07520819
+## varX        0.4701288  0.2623112 1.792256 0.11085698</code></pre>
 <pre class="r"><code># Since this is a matrix, you can call for an element (cell)
 summary(myModel)$coefficients[2,4] # calls for the p value, found in the second row, forth column</code></pre>
-<pre><code>## [1] 0.3911337</code></pre>
+<pre><code>## [1] 0.110857</code></pre>
 </div>
 </div>
 <div id="c" class="section level3">
@@ -226,28 +226,28 @@ print(combine)</code></pre>
 ## 
 ## $coefficients
 ## (Intercept)           x 
-##   0.1244621   3.0290623 
+##   0.5988564   2.9654734 
 ## 
 ## $residuals
-##            1            2            3            4            5 
-##  1.210238751 -1.319828569 -0.622658831  0.140790952  0.226050968 
-##            6            7            8            9           10 
-## -0.129782067  0.234518674  0.927840582  0.009982143 -0.677152602 
+##           1           2           3           4           5           6 
+## -1.65801244  0.57745690 -0.05142570  0.25358848  1.95244704  0.05741613 
+##           7           8           9          10 
+## -0.20646268  0.38131332 -0.99423255 -0.31208851 
 ## 
 ## $effects
-##  (Intercept)            x                                        
-## -53.07663154  27.51282438  -0.71474010  -0.09131974  -0.14608915 
-##                                                                  
-##  -0.64195161  -0.41768029   0.13561219  -0.92227567  -1.74943984 
+## (Intercept)           x                                                 
+## -53.4708273  26.9352501   0.2265425   0.6163954   2.4000927   0.5899006 
+##                                                 
+##   0.4108605   1.0834753  -0.2072318   0.5597510 
 ## 
 ## $rank
 ## [1] 2
 ## 
 ## $fitted.values
 ##         1         2         3         4         5         6         7 
-##  3.153524  6.182587  9.211649 12.240711 15.269773 18.298836 21.327898 
+##  3.564330  6.529803  9.495277 12.460750 15.426224 18.391697 21.357170 
 ##         8         9        10 
-## 24.356960 27.386023 30.415085 
+## 24.322644 27.288117 30.253591 
 ## 
 ## $assign
 ## [1] 0 1
@@ -318,16 +318,16 @@ print(combine)</code></pre>
 ## 
 ## $model
 ##            y  x
-## 1   4.363763  1
-## 2   4.862758  2
-## 3   8.588990  3
-## 4  12.381502  4
-## 5  15.495824  5
-## 6  18.169054  6
-## 7  21.562417  7
-## 8  25.284801  8
-## 9  27.396005  9
-## 10 29.737932 10</code></pre>
+## 1   1.906317  1
+## 2   7.107260  2
+## 3   9.443851  3
+## 4  12.714339  4
+## 5  17.378671  5
+## 6  18.449113  6
+## 7  21.150708  7
+## 8  24.703957  8
+## 9  26.293885  9
+## 10 29.941502 10</code></pre>
 </div>
 </div>
 <div id="section-1" class="section level3">
@@ -467,14 +467,14 @@ varX &lt;- runif(10)
 myModel &lt;- lm(varY~varX) 
 str(myModel)</code></pre>
 <pre><code>## List of 12
-##  $ coefficients : Named num [1:2] 0.285 0.404
+##  $ coefficients : Named num [1:2] 0.684 -0.297
 ##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;varX&quot;
-##  $ residuals    : Named num [1:10] 0.36 -0.388 0.232 0.365 0.116 ...
+##  $ residuals    : Named num [1:10] -0.2646 0.064 -0.159 0.0498 -0.0989 ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
-##  $ effects      : Named num [1:10] -1.268724 -0.346133 0.000375 0.318615 -0.119235 ...
+##  $ effects      : Named num [1:10] -1.50735 0.27355 -0.12485 0.08944 -0.00317 ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;(Intercept)&quot; &quot;varX&quot; &quot;&quot; &quot;&quot; ...
 ##  $ rank         : int 2
-##  $ fitted.values: Named num [1:10] 0.584 0.583 0.297 0.486 0.293 ...
+##  $ fitted.values: Named num [1:10] 0.44 0.41 0.391 0.406 0.551 ...
 ##   ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
 ##  $ assign       : int [1:2] 0 1
 ##  $ qr           :List of 5
@@ -483,7 +483,7 @@ str(myModel)</code></pre>
 ##   .. .. ..$ : chr [1:10] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
 ##   .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;varX&quot;
 ##   .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1
-##   ..$ qraux: num [1:2] 1.32 1.4
+##   ..$ qraux: num [1:2] 1.32 1.21
 ##   ..$ pivot: int [1:2] 1 2
 ##   ..$ tol  : num 1e-07
 ##   ..$ rank : int 2
@@ -506,8 +506,8 @@ str(myModel)</code></pre>
 ##   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;
 ##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;varY&quot; &quot;varX&quot;
 ##  $ model        :'data.frame':   10 obs. of  2 variables:
-##   ..$ varY: num [1:10] 0.945 0.195 0.529 0.851 0.41 ...
-##   ..$ varX: num [1:10] 0.7416 0.7388 0.0313 0.4982 0.0211 ...
+##   ..$ varY: num [1:10] 0.175 0.474 0.232 0.455 0.452 ...
+##   ..$ varX: num [1:10] 0.821 0.922 0.985 0.936 0.446 ...
 ##   ..- attr(*, &quot;terms&quot;)=Classes 'terms', 'formula'  language varY ~ varX
 ##   .. .. ..- attr(*, &quot;variables&quot;)= language list(varY, varX)
 ##   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1

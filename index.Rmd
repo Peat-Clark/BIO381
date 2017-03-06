@@ -41,7 +41,8 @@ My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a c
   * [Solving problems in r](assignment5.html)  
 
 ####Homework 6   
-  * [Defining functions in r](Assignment6Functions.html)
+  * [Defining functions in r](assigment6.html)
+  
 
 
 Here is a picture of an old study site in Oregon

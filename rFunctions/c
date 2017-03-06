@@ -1,0 +1,31 @@
+### 'c()'
+#### Peter Clark
+
+**c()** is a function which combines (or more specificially, concatenate) its arguments and returns a vector or list (a one dimensional array). When you use **c()** to create a vector, what you are actually doing is combining together a series of 1-length vectors. You may also combine vectors and lists.
+
+**Usage**
+
+*c(...)* where ... are objects to be concatenated
+
+
+```{r}
+# combining two variables
+k <- (1:5)
+b <- (10:20) # k and b pruduce a sequence function for two different sets of numbers
+d <- c(k,b) # c combines those two sequences together and returns them as one list
+print(d)
+
+# combining more
+e<-c(c(1, 2), c(d))
+print(e)
+
+# combining a vector and list
+x = 1:10  # create a vector variable 
+is.vector(x) # is it a vector? Yes indeed
+y = 3*x+rnorm(length(x)) # create a new vector
+is.vector(y) # still a vector
+z = lm(y ~ x) # running these as a linear model is not a vector, but is a list
+is.list(z) # the proof is in the pudding
+combine = c(x, z) # combine a vector and list creates a table
+print(combine)
+```

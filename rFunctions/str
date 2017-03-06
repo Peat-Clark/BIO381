@@ -1,0 +1,25 @@
+### 'str'
+#### Peter Clark
+
+**str** is a diagnostic function that allows you to compactly display the "structure" of an R object. This is a concise alternative to the summary function. Ideally, only one line for each ‘basic’ structure is displayed. It is especially well suited to compactly display the (abbreviated) contents of lists. The basic goal of using str allows you to answer "whats in this object"?
+
+**Usage**
+
+*str(object, ...)*
+
+See ?help for greater detail of arguments
+
+
+```{r}
+# examples include:
+
+str(1:12) # show the structure of a sequence
+
+str(str) # show the arguement structure of a function
+
+# show the structure of a linear model
+varY <- runif(10) 
+varX <- runif(10)
+myModel <- lm(varY~varX) 
+str(myModel)
+```

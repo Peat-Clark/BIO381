@@ -1,0 +1,27 @@
+### 'length'
+#### Peter Clark
+
+The **length** function provides or allows you to set the length of an object (vector,lists) in the form of an integer. Note: If the parameter is a matrix or dataframe, it returns the number of variables (columns)
+
+**Usage**
+
+*length(x) returns* the length of a variable as an integer
+
+*length(x) <- value* assigns the length of an object (vector, list), where "value" is a non-negative integer. Decimals (doubles) will be rounded down
+
+```{r}
+
+# assign the length of a vector of 10, trucating at xth component
+x<-1:100
+length(x) <- 10
+x
+
+# examine a vector is by returning its length (count)
+x<-1:100
+length(x)
+
+# derive the length of two vectors to look at differences
+z<-(1:30)
+p<-(1:20)
+length(z)-length(p)
+```

@@ -1,0 +1,24 @@
+### 'sprintf'
+#### Peter Clark
+
+This function allows for the creation of a character string that can be incoporated into a vector. It returns a character vector containing a formatted combination of text and variable values. While the paste function is more useful for vectors, **sprintf** is useful for precise control of the output. A wrapper for *c()* function
+
+**Usage**
+
+*sprintf(fmt, ...)* where fmt is a character string up to 8192 characters and ... are the values to be incorporated in the the fmt string
+
+**Subuse**   
+
+* To substitute in a string or string variable, use *%s*   
+* For integers, use *%d* or a variant   
+   * Many other options exist: For floating-point numbers, use *%f* for standard notation, and *%e* or *%E* for exponential notation. You can also use *%g* or *%G* for a "smart" formatter that automatically switches between the two formats, depending on where the significant digits are.
+
+```{r}
+
+x <- 2349
+y <- 1111
+z <- 2
+sprintf("Substitute in a string or number: %s", x)   # %s substitutes x into the string
+ 
+sprintf("Can have multiple %s %E occurrences %s", x, z, y, "- got it?")
+```

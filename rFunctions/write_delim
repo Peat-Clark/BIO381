@@ -1,0 +1,23 @@
+### 'write.delim'
+#### Peter Clark
+
+In package *"caroline"*, this function allows you to write a tab delimited text file. This is a wrapper for *write.table* with the same options as *read.delim*. Files are saved to your working directory.
+
+**Usage**
+
+*write.delim(df, file, quote = FALSE, row.names = FALSE, sep = "\t", ...)*
+
+**Arguments**   
+
+* df:	   a dataframe.   
+    * file	   outputfile path.   
+      * quote    should elements of the dataframe be quoted for output.   
+      * row.names   should the output include rownames.   
+      * sep   the delimiter between fields.   
+      * ...   other parameters passed to write.table.
+
+```{r}
+library(caroline) # run package caroline
+x <- data.frame(a = I("a \" quote"), b = pi) # assigns dataframe to variable x
+write.delim(x, file = "mydata.tab") # writes dataframe for x to tab delimited file saved to your working directory
+```

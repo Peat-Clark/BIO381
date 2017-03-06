@@ -1,0 +1,20 @@
+### 'as.logical'
+#### Peter Clark
+
+
+One of the logical vectors, **as.logical** creates or tests for objects of type "logical". It attempts to coerce its argument to be of logical type, returning a *TRUE* or *FALSE*. Values <0 are *FALSE* and those >1 are *TRUE*. **as.logical** strips attributes including names. Character strings *c("T", "TRUE", "True", "true")* are regarded as true, *c("F", "FALSE", "False", "false")* as false, and all others as *NA*.
+
+**Usage**
+
+*as.logical(x, ...)* where *x* is the object to be coerced or tested
+
+```{r}
+
+a <- 3
+x <- as.logical(a > 2) # coereces the variable a into a logical (TRUE, FALSE) if the argument is met
+print(x)          # let's see the output
+if(x) TRUE    # returns a logical if the parements in the if statement are true 
+
+x <- 0:6
+as.logical(x) # coerce each bit in sequence to logical
+```

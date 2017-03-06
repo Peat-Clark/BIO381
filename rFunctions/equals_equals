@@ -1,0 +1,19 @@
+### '=='
+#### Peter Clark
+
+The logical vector **==** is a relational operator that compares values for exact equality. It can be used on atomic vectors and results in a binary output (e.g., True False). 
+
+**Useage**
+
+*x == y* compares two variabes for exact equality
+
+
+```{r}
+x1 <- 5 - 3
+x2 <- 4 - 1
+x1 == x2    # is x1 exactly equal to x2? No, so R returns FALSE
+
+x1a <- 10-2
+x2a <- 12-4
+x1a == x2a # is x1A exactly equal to x2A? Yes, so R returns TRUE
+```

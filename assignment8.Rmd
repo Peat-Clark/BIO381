@@ -1,0 +1,290 @@
+---
+title: "assignment8"
+author: "Peter Clark"
+date: "March 22, 2017"
+output: html_document
+---
+
+###Homework:
+
+1) Set up a new markdown file for this homework. For each of the 4 models create a function to run the model. You will need to think carefully about the formal parameters for the input, the default values, and the output from your function. The output should just include model results, not any graphics.
+
+Create the function in a single R chunk immediately after the function run it with its default values create a tiny fake data set (use some of the random number functions you now know about) and run your code on the fake data.
+
+###MOCK DATA SET
+
+```{r}
+# Create mock data set:
+xDBH <- runif(20)
+yHeight <- runif(20)
+spp <- rep(c("A", "B", "C", "D", "E"), 4)
+canopy <- (rep(c("s","i","c","d"), 5))
+myDataframe <- data.frame(xDBH, yHeight, spp, canopy)
+print(myDataframe)
+```
+
+###Regression:
+```{r}
+###########################################################################
+# Function for a simple linear regression 
+# This function takes continous y and x variables
+###########################################################################
+
+Regression <- function(x=1:15, y=runif(15)){
+  regModel <- lm(y~x)
+  
+  out <- list(regModel, summary(regModel))
+return(out)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+```
+
+
+####Test Regression:
+
+```{r}
+#run function on default values
+Regression()
+```
+```{r}
+# Test Function with mock data set:
+Regression(x=myDataframe$xDBH, y=myDataframe$yHeight)
+```
+
+###ANOVA:
+
+```{r}
+###########################################################################
+#Function for a simple ANOVA 
+#This fucntion takes continous y and discrete x variables
+###########################################################################
+
+myANOVA <- function(x=as.factor(c(rep("maple", 10), rep("oak", 10))), y=runif(20)){
+  anovaModel <- aov(y~x)
+  
+  out <- list(anovaModel, summary(anovaModel))
+return(out)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+
+```
+
+
+####Test ANOVA:
+
+```{r}
+# run function on default values
+myANOVA()
+```
+
+```{r}
+# Test Function with mock data set:
+myANOVA(x=myDataframe$spp, y=myDataframe$yHeight)
+```
+
+###Contingecy analysis:
+```{r}
+###########################################################################
+# Function for a contingency analysis 
+#This function takes discrete y and discrete x variables
+###########################################################################
+
+myContingency <- function(x=as.factor(c(rep("Maple", 5), rep("Oak", 15))), y=as.factor(rep(c("s","i","c","d"), 5))){
+  dataMatrix <- rbind(x,y)
+  chiModel <- chisq.test(dataMatrix)
+  
+  out <- list(chiModel, summary(chiModel))
+return(out)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+```
+
+####Test Contingency analysis:
+
+```{r}
+# run function on default values
+myContingency()
+```
+
+```{r}
+# Test Function with mock data:
+myContingency(x=myDataframe$spp, y=myDataframe$canopy)
+```
+
+###Logistic Regression
+```{r}
+###########################################################################
+# Function for a logistic regression (takes disc. x and cont. y variables)
+###########################################################################
+
+lRegression <- function(x=runif(20), y=as.factor(c(rep("0", 10), rep("1", 10)))){
+  logRegMod <- glm(y~x,family=binomial(link="logit"))
+  
+  p <- list(logRegMod, summary(logRegMod))
+return(p)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+
+```
+
+
+####Test Logistic Regression:
+
+```{r}
+# run function on default values
+lRegression()
+```
+
+```{r}
+# Test Function with mock data Set:
+lRegression(x=myDataframe$xDBH, y=myDataframe$spp)
+```
+
+### Homework part 2: Plotting
+2) Now, for each of the 4 statistical models, write a graphics function that will generate a nice plot of the results. The formal parameters for input to your graphics function should be the same as the input for your corresponding stats function. Again, illustrate the graphics function for your default settings and for the tiny fake data set you created in 1.
+
+### Regression Plot
+```{r}
+###########################################################################
+# function that plots data from regression 
+# this functon takes continous y and x variables
+###########################################################################
+
+RegressionPlot <- function(x=1:20, y=runif(20)){
+  
+  rPlot <- plot(y=y,x=x,pch=21,bg="tan",cex=1.5, main="REGRESSION PLOT")
+  regModel <- lm(y~x)
+  abline(regModel)
+
+return(rPlot)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+```
+
+
+####Test Regression Plot:
+```{r}
+# run the function with stock values:
+RegressionPlot()
+
+```
+
+```{r}
+# Test Function with mock data set:
+RegressionPlot(x=myDataframe$xDBH, y=myDataframe$yHeight)
+```
+
+###ANOVA plot:
+
+```{r}
+###########################################################################
+# Function that plots box plots from ANOVA 
+#This fucntion takes continous y and discrete x variables
+###########################################################################
+
+myANOVAplot <- function(x=as.factor(c(rep("maple", 10), rep("oak", 10))), y=runif(20)){
+  
+  aovPlot <- boxplot(y~x, main="ANOVA PLOT")
+  
+return(aovPlot)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+```
+
+
+####Test ANOVA Plot:
+```{r}
+# run function on default values
+myANOVAplot()
+
+```
+
+###Contingency Plot
+```{r}
+###########################################################################
+# Function for a contingency plot 
+# This function takes disciscrete y and x variables
+###########################################################################
+
+contingencyPlot <- function(x=as.factor(c(rep("Maple", 5), rep("Oak", 15))), y=as.factor(rep(c("s","i","c","d"), 5))){
+  dataMatrix <- rbind(x,y)
+ conPlot <- mosaicplot(x=dataMatrix,
+           shade=TRUE)
+
+return(conPlot)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+
+```
+
+####Test Contingency Plot:
+```{r}
+# run function on default values
+contingencyPlot()
+
+```
+
+
+```{r}
+# Test function with mock data set:
+contingencyPlot(x=myDataframe$spp, y=myDataframe$canopy)
+```
+
+###LOgistic Regression Plot:
+
+```{r}
+###########################################################################
+# Function for a logistic reg. plot 
+# This fucntion takes discrete y and continous x variables
+###########################################################################
+
+LogRegplot <- function(x=runif(20), y=as.factor(c(rep("0", 10), rep("1", 10)))){
+  
+  logRegMod <- glm(y~x,family=binomial(link="logit"))
+  plot(x=x, y=y,pch=21,bg="blue",cex=1)
+curve(predict(logRegMod,data.frame(x),type="response"),add=TRUE,lwd=2)
+return()
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+
+```
+
+
+####Test Logostic Regression Plot
+
+```{r}
+# run function on default values
+LogRegplot()
+
+```
+
+
+```{r}
+# Test function with mock data set:
+LogRegplot(x=myDataframe$yHeight, y=myDataframe$canopy)
+```
+

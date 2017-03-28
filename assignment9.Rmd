@@ -1,0 +1,123 @@
+---
+title: "assignment9"
+author: "Peter Clark"
+date: "March 28, 2017"
+output: html_document
+---
+
+#DRAFT WORK IN PROGRESS
+
+
+```{r}
+Data<-read.table("farmwoodlot_BeachOak.csv", header=T, sep=",",stringsAsFactors=F)
+str(Data)
+```
+
+```{r}
+###########################################################################
+#Function for a simple ANOVA 
+#This fucntion takes continous y and discrete x variables
+###########################################################################
+
+myANOVA <- function(x=as.factor(c(rep("maple", 10), rep("oak", 10))), y=runif(20)){
+  anovaModel <- aov(y~x)
+  
+  out <- list(anovaModel, summary(anovaModel))
+return(out)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+
+```{r}
+###########################################################################
+# Function that plots box plots from ANOVA 
+#This fucntion takes continous y and discrete x variables
+###########################################################################
+
+myANOVAplot <- function(x=as.factor(c(rep("maple", 10), rep("oak", 10))), y=runif(20)){
+  
+  aovPlot <- boxplot(y~x, main="ANOVA PLOT")
+  
+return(aovPlot)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+```
+
+
+```{r}
+#run my anova on my data
+myANOVA(x=Data$PlotNo, y=Data$DBH_48)
+```
+```{r}
+myANOVAplot(x=Data$PlotNo, y=Data$DBH_48)
+```
+
+```{r}
+###########################################################################
+# Function for a simple linear regression 
+# This function takes continous y and x variables
+###########################################################################
+
+Regression <- function(x=1:15, y=runif(15)){
+  regModel <- lm(y~x)
+  
+  out <- list(regModel, summary(regModel))
+return(out)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+```
+
+```{r}
+Regression(x=Data$DBH_48, y=Data$Bark_Thickness_48)
+```
+
+```{r}
+###########################################################################
+# function that plots data from regression 
+# this functon takes continous y and x variables
+###########################################################################
+
+RegressionPlot <- function(x=1:20, y=runif(20)){
+  
+  rPlot <- plot(y=y,x=x,pch=21,bg="tan",cex=1.5, main="REGRESSION PLOT")
+  regModel <- lm(y~x)
+  abline(regModel)
+
+return(rPlot)
+}
+
+###########################################################################
+# END OF FUNCITON
+###########################################################################
+```
+
+```{r}
+RegressionPlot(x=Data$DBH_48, y=Data$Bark_Thickness_48)
+```
+
+```{r}
+hist(Data$DBH_63)
+#Make all '9999' and '7777' into na
+Data$DBH_63[Data$DBH_63 == 9999] <- NA
+Data$DBH_63[Data$DBH_63 == 7777] <- NA
+
+hist(Data$DBH_63)
+
+```
+
+
+
+```{r}
+# check histogram of bark thckness
+hist(Data$Bark_Thickness_48)
+```
+
+

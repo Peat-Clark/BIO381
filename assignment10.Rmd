@@ -50,7 +50,9 @@ MaxPower()
 a
 ###
 ```
+
 ```{r}
+## Alex L's code
 x <- rnorm(20, mean = 0, sd = 10)
         
 maxdiff <- function (x) {
@@ -66,3 +68,10 @@ diff <- abs(x_pairs[,1] - x_pairs[,2])
 }
 
 ```
+```{r}
+# other alex's code
+
+```
+
+```
+

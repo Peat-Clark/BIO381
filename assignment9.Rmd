@@ -8,10 +8,14 @@ output: html_document
 #DRAFT WORK IN PROGRESS
 
 
+Read in actual data from Farm Woodlot study at JRF
+
 ```{r}
-Data<-read.table("farmwoodlot_BeachOak.csv", header=T, sep=",",stringsAsFactors=F)
+Data<-read.table("farmwoodlot_truncated.csv", header=T, sep=",",stringsAsFactors=F)
 str(Data)
 ```
+
+Create ANOVA function
 
 ```{r}
 ###########################################################################
@@ -29,8 +33,13 @@ return(out)
 ###########################################################################
 # END OF FUNCITON
 ###########################################################################
+```
+
+
+Create ANOVA plot function
 
 ```{r}
+
 ###########################################################################
 # Function that plots box plots from ANOVA 
 #This fucntion takes continous y and discrete x variables
@@ -49,13 +58,21 @@ return(aovPlot)
 ```
 
 
+Run ANOVA on my data
+
 ```{r}
 #run my anova on my data
 myANOVA(x=Data$PlotNo, y=Data$DBH_48)
 ```
+
+Plot my data using an ANOVA, comparing DBH by plot/forest type
+
 ```{r}
 myANOVAplot(x=Data$PlotNo, y=Data$DBH_48)
 ```
+
+
+Create simple linear regression function
 
 ```{r}
 ###########################################################################
@@ -75,9 +92,7 @@ return(out)
 ###########################################################################
 ```
 
-```{r}
-Regression(x=Data$DBH_48, y=Data$Bark_Thickness_48)
-```
+Create lr plot
 
 ```{r}
 ###########################################################################
@@ -99,9 +114,7 @@ return(rPlot)
 ###########################################################################
 ```
 
-```{r}
-RegressionPlot(x=Data$DBH_48, y=Data$Bark_Thickness_48)
-```
+Clean up data by changing "cull" and blank data to "NA"
 
 ```{r}
 hist(Data$DBH_63)
@@ -114,10 +127,44 @@ hist(Data$DBH_63)
 ```
 
 
+Run a regression on tree growth (DBH) over 20 year time period. Yes, simple.
 
 ```{r}
-# check histogram of bark thckness
-hist(Data$Bark_Thickness_48)
+Regression(x=Data$DBH_48, y=Data$DBH_63)
 ```
 
+Plot above regression
+
+```{r}
+RegressionPlot(x=Data$DBH_48, y=Data$DBH_63)
+
+```
+
+
+####Create mock data representative of actual
+
+
+```{r}
+# creating mock data that have the same distribution, mean and stdev of my 
+# 1948 dbh data
+plotVar <- rep.int((1:4), 5) # four plots
+speciesVar <- as.factor(rep(c("TSCA","ACRU","QURU", "FAGR"),each=5)) # four species
+library(fGarch) # use this package to get skew normal distribution
+dbhVar <- rsnorm(20, mean = 7.1, sd = 2.9, xi = 1.4) # runs the skew normal
+# assigns mean, variance and "xi" skew
+hist(dbhVar) # random runs. some work some don't
+mockDF <- data.frame(plotVar, speciesVar, dbhVar)
+print(dataFrame)
+```
+
+```{r}
+hist(Data$DBH_48)
+```
+
+```{r}
+dbh48<-na.omit(Data$DBH_48)
+mean(dbh48)
+sd(dbh48)
+is.numeric(Data$DBH_48)
+```
 

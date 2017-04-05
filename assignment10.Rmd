@@ -1,0 +1,68 @@
+---
+title: "assignment10"
+author: "Peter Clark"
+date: "April 5, 2017"
+output: html_document
+---
+
+
+Using a for or while loop, write a function to calculate the number of zeroes in a numeric vector.
+
+```{r}
+myDat <- 0:10
+eVec <- vector(mode="numeric")
+for (i in seq_along(myDat)) {
+  if (myDat[i]==0) (eVec[i]<-1) else
+    if (myDat[i]!=0) (eVec[i]<-0)
+}
+eVec
+sum(eVec)
+```
+
+Use subsetting instead of a loop to rewrite the function as a single line of code.
+
+```{r}
+myDat <- c(0,0,10)
+vec <- sum(myDat== 0)
+vec
+```
+
+Write a function that takes as input a numeric vector, and returns as output the maximum difference between all possible pairs of elements. Be careful to ensure that your function works properly with both negative and positive numbers. For your first version of the function, create a vector that stores all possible pairwise differences and then extracts the maximum value from that list.
+
+```{r}
+#############################################
+# FUNCTION: maxxxDif
+# takes numeric vector, determines difference between all combinations in vectors
+#
+# input: x
+# output: x
+#--------------------------------------------
+MaxPower <- function (a=c(1,2,3,4)) {
+x <-vector(mode = "numeric")
+    for (i in seq_along(a)) {
+      x <- matrix(a[i]+a[i+(a[i])])
+    }
+return(x)
+}
+
+###########################################
+MaxPower()
+a
+###
+```
+```{r}
+x <- rnorm(20, mean = 0, sd = 10)
+        
+maxdiff <- function (x) {
+cols <- rep(0,length(x)^2)
+x_pairs <- data.frame(cols,cols)
+for (i in 1:length(x)){
+  for (j in 1:length(x)){
+    iter_pairs = c(x[i], x[j])
+    x_pairs[counter,] = iter_pairs
+  }
+}
+diff <- abs(x_pairs[,1] - x_pairs[,2])
+}
+
+```

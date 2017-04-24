@@ -1,0 +1,220 @@
+---
+title: "Vegan Tutorial"
+author: "Peter Clark"
+date: "April 12, 2017"
+output: html_document
+---
+
+
+##A tutorial in VEGAN
+####an R package for community analysis
+
+
+The **vegan** package provides tools for descriptive community ecology. It has most basic functions of:
+
+* diversity analysis  
+* community ordination  
+* dissimilarity analysis  
+
+In this tutorial, we will briefly explore the breadth of the program as well as dive into basic diversity analysis explore ordination of multivariate datasets.
+
+If you haven't done so already, please install **vegan**
+
+```{r}
+
+#install.packages("vegan")
+
+```
+
+Consider visiting the [vegan documentation](https://cran.r-project.org/web/packages/vegan/vegan.pdf) to learn about this package
+
+
+We will using a few datasets native to vegan
+
+```{r}
+library(vegan)
+data(package = "vegan") ## names of data sets in the package
+
+```
+
+
+Explore the utility of FUNCTION *diveristy*
+
+```{r}
+data(dune) # Vegetation and Environment in Dutch Dune Meadows
+head(dune)
+
+diversity(dune,index = "simpson") # calculate simpson's for each site
+simpson <- diversity(dune, "simpson") # or assign to var.
+simpson
+shannon <- diversity(dune) # note that Shannon's 1-D is default
+shannon
+
+# lets compare the two
+par(mfrow = c(1, 2))  # to generate panels with 1 row of 2 graphs
+hist(simpson)
+hist(shannon)
+```
+
+Next we can calcuate pair-wise distance measures between sites based on their species composition ussing the FUNCTION *vegdist*
+
+Vegdist function computes dissimilarity indices
+
+
+```{r}
+# ?vegdist
+par(mfrow = c(1, 2))
+# bray, gower and others good in detecting underlying ecological gradients
+bray = vegdist(dune, "bray")
+gower = vegdist(dune, "gower")
+hist(bray)
+hist(gower)
+```
+
+
+To try some rarefaction, we use the *rarefy* and *rarecurve* functions.
+
+```{r}
+sp.abund <- rowSums(dune)  #gives the number of individuals found in each plot
+raremax <- min(rowSums(dune))  #rarefaction uses the smallest number of observations (individuals here) per sample to extrapolate the expected number if all other samples only had that number of observations
+raremax # view smallest # of obs
+
+Srare <- rarefy(dune, raremax) # now use function rarefy
+par(mfrow = c(1, 2))
+plot(sp.abund, Srare, xlab = "Observed No. of Species", ylab = "Rarefied No. of Species")
+rarecurve(dune, col = "blue")
+
+# notice that rarefied numbers are generally lower than observed, as
+# expected notice that they mostly asymptote, indicating thorough sampling
+```
+
+Now let's explore some **ordination techniques**.
+
+Many ordination techniques exist, including principal components analysis (PCA), *non-metric multidimensional scaling (NMDS)*, correspondence analysis (CA) and its derivatives (detrended CA (DCA), canonical CA (CCA)), Bray-Curtis ordination, and redundancy analysis (RDA), among others.
+
+Vegan is especially good at NMDS (aka NMS,MDS). This tutorial explores this in most detail.
+
+Let's lay some groundwork:
+
+The goal of NMDS is to collapse information from multiple dimensions (e.g, from multiple communities, sites, etc.) into just a few, so that they can be visualized and interpreted. Unlike other ordination techniques that rely on (primarily Euclidean) distances, such as Principal Coordinates Analysis, NMDS uses rank orders, and thus is an extremely flexible technique that can accommodate a variety of different kinds of data.
+
+Consider a single axis representing the abundance of a single species. Along this axis, we can plot the communities in which this species appears, based on its abundance within each.
+
+```{r}
+
+plot(0:10,0:10,type="n",axes=F,xlab="Abundance of Species 1",ylab="")
+axis(1)
+points(5,0); text(5.5,0.5,labels="community A")
+points(3,0); text(3.2,0.5,labels="community B")
+points(0,0); text(0.8,0.5,labels="community C")
+
+```
+
+Now consider a second axis of abundance, representing another species. We can now plot each community along the two axes (Species 1 and Species 2).
+
+```{r}
+plot(0:10,0:10,type="n",xlab="Abundance of Species 1",
+     ylab="Abundance of Species 2")
+points(5,5); text(5,4.5,labels="community A")
+points(3,3); text(3,3.5,labels="community B")
+points(0,5); text(0.8,5.5,labels="community C")
+```
+
+Now consider a third axis of abundance representing yet another species.
+
+```{r}
+# install.packages("scatterplot3d")
+library(scatterplot3d)
+d=scatterplot3d(0:10,0:10,0:10,type="n",xlab="Abundance of Species 1",
+  ylab="Abundance of Species 2",zlab="Abundance of Species 3"); d
+d$points3d(5,5,0); text(d$xyz.convert(5,5,0.5),labels="community A")
+d$points3d(3,3,3); text(d$xyz.convert(3,3,3.5),labels="community B")
+d$points3d(0,5,5); text(d$xyz.convert(0,5,5.5),labels="community C")
+```
+
+The goal of NMDS is to represent the original position of communities in multidimensional space as accurately as possible using a reduced number of dimensions that can be easily plotted and visualized (and to spare your thinker).
+
+NMDS does not use the absolute abundances of species in communities, but rather their rank orders. The use of ranks omits some of the issues associated with using absolute distance (e.g., sensitivity to transformation), and as a result is much more flexible technique that accepts a variety of types of data. (It's also where the "non-metric" part of the name comes from.)
+
+The NMDS procedure is iterative and takes place over several steps:
+
+Define the original positions of communities in multidimensional space.
+Specify the number of reduced dimensions (typically 2).
+Construct an initial configuration of the samples in 2-dimensions.
+Regress distances in this initial configuration against the observed (measured) distances.
+Determine the stress, or the disagreement between 2-D configuration and predicted values from the regression. If the 2-D configuration perfectly preserves the original rank orders, then a plot of one against the other must be monotonically increasing. The extent to which the points on the 2-D configuration differ from this monotonically increasing line determines the degree of stress. This relationship is often visualized in what is called a Shepard plot.
+If stress is high, reposition the points in 2 dimensions in the direction of decreasing stress, and repeat until stress is below some threshold.**A good rule of thumb: stress > 0.05 provides an excellent representation in reduced dimensions, > 0.1 is great, >0.2 is good/ok, and stress > 0.3 provides a poor representation.**
+
+
+To run the NMDS, we will use the function metaMDS from the vegan package. The function requires only a community-by-species matrix (which we will create randomly).
+
+```{r}
+set.seed(2)
+community_matrix=matrix(
+   sample(1:100,300,replace=T),nrow=10,
+   dimnames=list(paste("community",1:10,sep=""),paste("sp",1:30,sep="")))
+head(community_matrix)
+example_NMDS=metaMDS(community_matrix, # Our community-by-species matrix
+                     k=2) # The number of reduced dimensions. Incress if high stress is problem
+
+```
+You should see each iteration of the NMDS until a solution is reached (i.e., stress was minimized after some number of reconfigurations of the points in 2 dimensions).
+
+
+Now we can plot the NMDS. The plot shows us both the communities ("sites", open circles) and species (red crosses), but we don't know which circle corresponds to which site, and which species corresponds to which cross.
+
+```{r}
+plot(example_NMDS)
+```
+
+We can use the function ordiplot and orditorp to add text to the plot in place of points to make some sense of this rather non-intuitive mess.
+
+```{r}
+ordiplot(example_NMDS,type="n")
+orditorp(example_NMDS,display="species",col="red",air=0.01)
+orditorp(example_NMDS,display="sites",cex=1.25,air=0.01)
+
+```
+
+
+Let's suppose that communities 1-5 had some treatment applied, and communities 6-10 a different treatment. We can draw convex hulls connecting the vertices of the points made by these communities on the plot. I find this an intuitive way to understand how communities and species cluster based on treatments.
+
+```{r}
+treat=c(rep("Treatment1",5),rep("Treatment2",5))
+ordiplot(example_NMDS,type="n")
+ordihull(example_NMDS,groups=treat,draw="polygon",col="grey90",label=F)
+orditorp(example_NMDS,display="species",col="red",air=0.01)
+orditorp(example_NMDS,display="sites",col=c(rep("green",5),rep("blue",5)),
+   air=0.01,cex=1.25)
+```
+
+
+One can also plot "spider graphs" using the function orderspider, ellipses using the function ordiellipse, or a minimum spanning tree (MST) using ordicluster which connects similar communities (useful to see if treatments are effective in controlling community structure).
+```{r}
+#spider plot
+ordiplot(example_NMDS,type="n")
+ordispider(example_NMDS,groups=treat)
+orditorp(example_NMDS,display="species",col="red",air=0.01)
+orditorp(example_NMDS,display="sites",col=c(rep("green",5),rep("blue",5)),
+         air=0.01,cex=1.25)
+
+#ellipse
+ordiplot(example_NMDS,type="n")
+ordiellipse(example_NMDS,groups=treat,col="grey",label=F)
+orditorp(example_NMDS,display="species",col="red",air=0.01)
+orditorp(example_NMDS,display="sites",col=c(rep("green",5),rep("blue",5)),
+         air=0.01,cex=1.25)
+
+```
+
+If the treatment is continuous, such as an environmental gradient, then it might be useful to plot contour lines rather than convex hulls. We can simply make up some, say, elevation data for our original community matrix and overlay them onto the NMDS plot using ordisurf:
+```{r}
+# Define random elevations for previous example
+elevation=runif(10,0.5,1.5)
+# Use the function ordisurf to plot contour lines
+ordisurf(example_NMDS,elevation,main="",col="forestgreen")
+# Finally, display species on plot
+orditorp(example_NMDS,display="species",col="grey30",air=0.1,
+   cex=1)
+```
+

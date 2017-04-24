@@ -19,84 +19,98 @@ The **vegan** package provides tools for descriptive community ecology. It has m
 In this tutorial, we will briefly explore the breadth of the program as well as dive into basic diversity analysis explore ordination of multivariate datasets.
 
 If you haven't done so already, please install **vegan**
-
 ```{r}
-
 #install.packages("vegan")
-
 ```
 
-Consider visiting the [vegan documentation](https://cran.r-project.org/web/packages/vegan/vegan.pdf) to learn about this package
+##Documentation
 
+Consider visiting the [vegan documentation](https://cran.r-project.org/web/packages/vegan/vegan.pdf) to learn about this package.
 
+##Datasets
 We will using a few datasets native to vegan
 
 ```{r}
 library(vegan)
-data(package = "vegan") ## names of data sets in the package
+#data(package = "vegan") ## names of data sets in the package
 
 ```
 
+##Diversity
 
-Explore the utility of FUNCTION *diveristy*
+Explore the utility of the **diversity** function
 
 ```{r}
 data(dune) # Vegetation and Environment in Dutch Dune Meadows
-head(dune)
+str(dune) #a data frame of observations of 30 species at 20 sites
 
-diversity(dune,index = "simpson") # calculate simpson's for each site
+diversity(dune,index = "simpson") # calculate Simpson's 1-D Index of Diversity for each site. # closer to 1 = greater diversity
 simpson <- diversity(dune, "simpson") # or assign to var.
-simpson
-shannon <- diversity(dune) # note that Shannon's 1-D is default
-shannon
+simpson 
+shannon <- diversity(dune) # note that Shannon's is default
+shannon #Typically ranges from 1.5 - 3.4, higher = more diverse 
 
 # lets compare the two
-par(mfrow = c(1, 2))  # to generate panels with 1 row of 2 graphs
+par(mfrow = c(1, 2))  # use par to generate panels with 1 row of 2 graphs
 hist(simpson)
 hist(shannon)
 ```
 
-Next we can calcuate pair-wise distance measures between sites based on their species composition ussing the FUNCTION *vegdist*
+Next we can calcuate all of the pair-wise dissimilarity (distance) measures between sites based on their species composition using the function **vegdist**
 
-Vegdist function computes dissimilarity indices
+Vegdist computes dissimilarity indices. We are using *gower* and *bray-curtis* which are good in detecting underlying ecological gradients
 
+Both indices are used to quantify the compositional dissimilarity between two different sites. They are bounded between 0 and 1, where 0 = same composition, 1 = maximally dissimilar. 
 
 ```{r}
 # ?vegdist
 par(mfrow = c(1, 2))
-# bray, gower and others good in detecting underlying ecological gradients
-bray = vegdist(dune, "bray")
+bray = vegdist(dune, "bray") 
 gower = vegdist(dune, "gower")
 hist(bray)
 hist(gower)
+
+# r allows for multiple iterations of each dissimilarity index to examine #freqeuncy of differences
 ```
 
+##Rarefaction
 
-To try some rarefaction, we use the *rarefy* and *rarecurve* functions.
+
+Rarefaction is a technique to assess expected species richness. Rarefaction allows the calculation of species richness for a given number of individual samples, based on the construction of rarefaction curves.
+
+The issue that occurs when sampling various species in a community is that the larger the number of individuals sampled, the more species that will be found. Rarefaction curves are created by randomly re-sampling the pool of N samples multiple times and then plotting the average number of species found in each sample (1,2, ... N). "Thus rarefaction generates the expected number of species in a small collection of n individuals (or n samples) drawn at random from the large pool of N samples.". Rarefaction curves generally grow rapidly at first, as the most common species are found, but the curves plateau as only the rarest species remain to be sampled.
+
+To try some rarefaction, we use the **rarefy** and **rarecurve** functions.
 
 ```{r}
-sp.abund <- rowSums(dune)  #gives the number of individuals found in each plot
-raremax <- min(rowSums(dune))  #rarefaction uses the smallest number of observations (individuals here) per sample to extrapolate the expected number if all other samples only had that number of observations
-raremax # view smallest # of obs
+spAbund <- rowSums(dune)  #gives the number of individuals found in each plot
+spAbund # view observations per plot (site 17)
+raremin <- min(rowSums(dune))  #rarefaction uses the smallest number of observations per sample to extrapolate the expected number if all other samples only had that number of observations
+raremin # view smallest # of obs 
 
-Srare <- rarefy(dune, raremax) # now use function rarefy
+sRare <- rarefy(dune, raremin) # now use function rarefy
+sRare #gives an expected number of observations
 par(mfrow = c(1, 2))
-plot(sp.abund, Srare, xlab = "Observed No. of Species", ylab = "Rarefied No. of Species")
-rarecurve(dune, col = "blue")
+plot(spAbund, sRare, xlab = "Observed No. of Species", ylab = "Rarefied No. of Species") # plots actual observations by rarefied.
+rarecurve(dune, col = "blue") # produces rarefaction curves demonstrating species accumulation 
 
 # notice that rarefied numbers are generally lower than observed, as
 # expected notice that they mostly asymptote, indicating thorough sampling
 ```
 
+##Non-Metric Multidimensional Scaling 
+###(aka NMDS, MDS, NMS)
+
+
 Now let's explore some **ordination techniques**.
 
-Many ordination techniques exist, including principal components analysis (PCA), *non-metric multidimensional scaling (NMDS)*, correspondence analysis (CA) and its derivatives (detrended CA (DCA), canonical CA (CCA)), Bray-Curtis ordination, and redundancy analysis (RDA), among others.
+Many ordination techniques exist, including principal components analysis (PCA), *non-metric multidimensional scaling (NMDS)*, and correspondence analysis (CA), among others.
 
-Vegan is especially good at NMDS (aka NMS,MDS). This tutorial explores this in most detail.
+Vegan is especially good at NMDS. This tutorial explores this in most detail.
 
 Let's lay some groundwork:
 
-The goal of NMDS is to collapse information from multiple dimensions (e.g, from multiple communities, sites, etc.) into just a few, so that they can be visualized and interpreted. Unlike other ordination techniques that rely on (primarily Euclidean) distances, such as Principal Coordinates Analysis, NMDS uses rank orders, and thus is an extremely flexible technique that can accommodate a variety of different kinds of data.
+The goal of NMDS is to collapse information from multiple dimensions (e.g, from multiple communities, sites, etc.) into just a few, so that they can be *visualized and interpreted*. 
 
 Consider a single axis representing the abundance of a single species. Along this axis, we can plot the communities in which this species appears, based on its abundance within each.
 
@@ -132,24 +146,14 @@ d$points3d(3,3,3); text(d$xyz.convert(3,3,3.5),labels="community B")
 d$points3d(0,5,5); text(d$xyz.convert(0,5,5.5),labels="community C")
 ```
 
-The goal of NMDS is to represent the original position of communities in multidimensional space as accurately as possible using a reduced number of dimensions that can be easily plotted and visualized (and to spare your thinker).
+The goal of NMDS is to represent the position of communities in multidimensional space as accurately as possible using a reduced number of dimensions that can be easily visualized (and to spare your thinker).
 
 NMDS does not use the absolute abundances of species in communities, but rather their rank orders. The use of ranks omits some of the issues associated with using absolute distance (e.g., sensitivity to transformation), and as a result is much more flexible technique that accepts a variety of types of data. (It's also where the "non-metric" part of the name comes from.)
 
-The NMDS procedure is iterative and takes place over several steps:
-
-Define the original positions of communities in multidimensional space.
-Specify the number of reduced dimensions (typically 2).
-Construct an initial configuration of the samples in 2-dimensions.
-Regress distances in this initial configuration against the observed (measured) distances.
-Determine the stress, or the disagreement between 2-D configuration and predicted values from the regression. If the 2-D configuration perfectly preserves the original rank orders, then a plot of one against the other must be monotonically increasing. The extent to which the points on the 2-D configuration differ from this monotonically increasing line determines the degree of stress. This relationship is often visualized in what is called a Shepard plot.
-If stress is high, reposition the points in 2 dimensions in the direction of decreasing stress, and repeat until stress is below some threshold.**A good rule of thumb: stress > 0.05 provides an excellent representation in reduced dimensions, > 0.1 is great, >0.2 is good/ok, and stress > 0.3 provides a poor representation.**
-
-
-To run the NMDS, we will use the function metaMDS from the vegan package. The function requires only a community-by-species matrix (which we will create randomly).
+To run the NMDS, we will use the function **metaMDS**. The function requires only a community-by-species matrix (which we will create randomly).
 
 ```{r}
-set.seed(2)
+set.seed(2) # random no. generator 
 community_matrix=matrix(
    sample(1:100,300,replace=T),nrow=10,
    dimnames=list(paste("community",1:10,sep=""),paste("sp",1:30,sep="")))

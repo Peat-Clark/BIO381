@@ -1,7 +1,7 @@
 ---
 title: "Vegan Tutorial"
 author: "Peter Clark"
-date: "April 12, 2017"
+date: "April 26, 2017"
 output: html_document
 ---
 
@@ -63,20 +63,22 @@ Vegdist computes dissimilarity indices. We are using *gower* and *bray-curtis* w
 Both indices are used to quantify the compositional dissimilarity between two different sites. They are bounded between 0 and 1, where 0 = same composition, 1 = maximally dissimilar. 
 
 ```{r}
-# ?vegdist
 par(mfrow = c(1, 2))
 bray = vegdist(dune, "bray") 
 gower = vegdist(dune, "gower")
-hist(bray)
-hist(gower)
-
+hist(bray, lim = range(0.0,1.0))
+hist(gower, xlim = range(0.0,1.0))
 # r allows for multiple iterations of each dissimilarity index to examine #freqeuncy of differences
 ```
+
+Dissimilarity analysis is a good way to *explore variability* in community composition. The next steps would be to do some sort of cluster analysis to see where community associations exist, however we're going to switch gear now.
 
 ##Rarefaction
 
 
-Rarefaction is a technique to assess expected species richness. Rarefaction allows the calculation of species richness for a given number of individual samples, based on the construction of rarefaction curves.
+Rarefaction is a technique to assess expected species richness.
+
+Rarefaction allows the calculation of species richness for a given number of individual samples, based on the construction of rarefaction curves.
 
 The issue that occurs when sampling various species in a community is that the larger the number of individuals sampled, the more species that will be found. Rarefaction curves are created by randomly re-sampling the pool of N samples multiple times and then plotting the average number of species found in each sample (1,2, ... N). "Thus rarefaction generates the expected number of species in a small collection of n individuals (or n samples) drawn at random from the large pool of N samples.". Rarefaction curves generally grow rapidly at first, as the most common species are found, but the curves plateau as only the rarest species remain to be sampled.
 
@@ -84,18 +86,20 @@ To try some rarefaction, we use the **rarefy** and **rarecurve** functions.
 
 ```{r}
 spAbund <- rowSums(dune)  #gives the number of individuals found in each plot
-spAbund # view observations per plot (site 17)
+spAbund # view observations per plot 
 raremin <- min(rowSums(dune))  #rarefaction uses the smallest number of observations per sample to extrapolate the expected number if all other samples only had that number of observations
-raremin # view smallest # of obs 
+raremin # view smallest # of obs (site 17)
 
 sRare <- rarefy(dune, raremin) # now use function rarefy
-sRare #gives an expected number of observations
+sRare #gives an "expected"rarefied" number of species (not obs) if only 15 individuals were present
+
 par(mfrow = c(1, 2))
 plot(spAbund, sRare, xlab = "Observed No. of Species", ylab = "Rarefied No. of Species") # plots actual observations by rarefied.
-rarecurve(dune, col = "blue") # produces rarefaction curves demonstrating species accumulation 
+rarecurve(dune, col = "blue") # produces rarefaction curves demonstrating differences in species accumulation 
 
-# notice that rarefied numbers are generally lower than observed, as
-# expected notice that they mostly asymptote, indicating thorough sampling
+# squares are site numbers positioned at observed space. To "rarefy" a larger site, trace the rarefaction curve until the curve vertically corresponds with the lesser site obs. This gives you rarefied species richness
+
+# notice that rarefied numbers are generally lower than observed, as expected notice that they mostly asymptote, indicating thorough sampling
 ```
 
 ##Non-Metric Multidimensional Scaling 
@@ -110,7 +114,7 @@ Vegan is especially good at NMDS. This tutorial explores this in most detail.
 
 Let's lay some groundwork:
 
-The goal of NMDS is to collapse information from multiple dimensions (e.g, from multiple communities, sites, etc.) into just a few, so that they can be *visualized and interpreted*. 
+The goal of NMDS is to collapse information from multiple dimensions (e.g, from multiple communities, sites, etc.) into just a few, so that they can be *visualized and interpreted*. NMDS does not produce a statistical output - however we could do so (more on this later)
 
 Consider a single axis representing the abundance of a single species. Along this axis, we can plot the communities in which this species appears, based on its abundance within each.
 
@@ -138,8 +142,8 @@ Now consider a third axis of abundance representing yet another species.
 
 ```{r}
 # install.packages("scatterplot3d")
-library(scatterplot3d)
-d=scatterplot3d(0:10,0:10,0:10,type="n",xlab="Abundance of Species 1",
+library(scatterplot3d) # an R package for the visualization of multivariate data in a three dimensional space.
+d<-scatterplot3d(0:10,0:10,0:10,type="n",xlab="Abundance of Species 1",
   ylab="Abundance of Species 2",zlab="Abundance of Species 3"); d
 d$points3d(5,5,0); text(d$xyz.convert(5,5,0.5),labels="community A")
 d$points3d(3,3,3); text(d$xyz.convert(3,3,3.5),labels="community B")
@@ -148,18 +152,22 @@ d$points3d(0,5,5); text(d$xyz.convert(0,5,5.5),labels="community C")
 
 The goal of NMDS is to represent the position of communities in multidimensional space as accurately as possible using a reduced number of dimensions that can be easily visualized (and to spare your thinker).
 
-NMDS does not use the absolute abundances of species in communities, but rather their rank orders. The use of ranks omits some of the issues associated with using absolute distance (e.g., sensitivity to transformation), and as a result is much more flexible technique that accepts a variety of types of data. (It's also where the "non-metric" part of the name comes from.)
+NMDS does not use the absolute abundances of species in communities, but rather their rank orders and as a result is a flexible technique that accepts a variety of types of data. (It's also where the "non-metric" part of the name comes from.)
 
 To run the NMDS, we will use the function **metaMDS**. The function requires only a community-by-species matrix (which we will create randomly).
 
 ```{r}
-set.seed(2) # random no. generator 
+set.seed(2) # random no. generator / way to specify seeds
 community_matrix=matrix(
    sample(1:100,300,replace=T),nrow=10,
    dimnames=list(paste("community",1:10,sep=""),paste("sp",1:30,sep="")))
 head(community_matrix)
 example_NMDS=metaMDS(community_matrix, # Our community-by-species matrix
-                     k=2) # The number of reduced dimensions. Incress if high stress is problem
+                     k=2) # The number of reduced dimensions. Increase if high stress is problem. 
+
+#The stress, or the disagreement between 2-D configuration and predicted values from the regression"
+
+#A good rule of thumb: stress > 0.05 provides an excellent representation in reduced dimensions, > 0.1 is great, >0.2 is good/ok, and stress > 0.3 provides a poor representation
 
 ```
 You should see each iteration of the NMDS until a solution is reached (i.e., stress was minimized after some number of reconfigurations of the points in 2 dimensions).
@@ -171,11 +179,11 @@ Now we can plot the NMDS. The plot shows us both the communities ("sites", open 
 plot(example_NMDS)
 ```
 
-We can use the function ordiplot and orditorp to add text to the plot in place of points to make some sense of this rather non-intuitive mess.
+We can use the function **ordiplot** and **orditorp** to add text to the plot in place of points to make some sense of this rather non-intuitive mess.
 
 ```{r}
-ordiplot(example_NMDS,type="n")
-orditorp(example_NMDS,display="species",col="red",air=0.01)
+ordiplot(example_NMDS,type="n") #Ordination plot function especially for congested plots
+orditorp(example_NMDS,display="species",col="red",air=0.01) #The function adds text or points to ordination plots
 orditorp(example_NMDS,display="sites",cex=1.25,air=0.01)
 
 ```
@@ -193,7 +201,7 @@ orditorp(example_NMDS,display="sites",col=c(rep("green",5),rep("blue",5)),
 ```
 
 
-One can also plot "spider graphs" using the function orderspider, ellipses using the function ordiellipse, or a minimum spanning tree (MST) using ordicluster which connects similar communities (useful to see if treatments are effective in controlling community structure).
+One can also plot "spider graphs" using the function **orderspider**, ellipses using the function **ordiellipse**, or a minimum spanning tree (MST) using **ordicluster** which connects similar communities (useful to see if treatments are effective in controlling community structure).
 ```{r}
 #spider plot
 ordiplot(example_NMDS,type="n")
@@ -201,17 +209,17 @@ ordispider(example_NMDS,groups=treat)
 orditorp(example_NMDS,display="species",col="red",air=0.01)
 orditorp(example_NMDS,display="sites",col=c(rep("green",5),rep("blue",5)),
          air=0.01,cex=1.25)
-
-#ellipse
-ordiplot(example_NMDS,type="n")
-ordiellipse(example_NMDS,groups=treat,col="grey",label=F)
-orditorp(example_NMDS,display="species",col="red",air=0.01)
-orditorp(example_NMDS,display="sites",col=c(rep("green",5),rep("blue",5)),
-         air=0.01,cex=1.25)
-
 ```
 
-If the treatment is continuous, such as an environmental gradient, then it might be useful to plot contour lines rather than convex hulls. We can simply make up some, say, elevation data for our original community matrix and overlay them onto the NMDS plot using ordisurf:
+Great for visualization, but no statistical output?  
+
+  * Find centroid of polygons   
+  * Measure difference in center vector  
+  * Randomize community names and re-run 1000x  
+  * Examine randomly assigned community centriod distances compared to observed differences for spurious ordination  
+
+
+If the treatment is continuous, such as an environmental gradient, then it might be useful to plot contour lines rather than convex hulls. We can simply make up some, say, elevation data for our original community matrix and overlay them onto the NMDS plot using **ordisurf**:
 ```{r}
 # Define random elevations for previous example
 elevation=runif(10,0.5,1.5)

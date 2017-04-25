@@ -16,6 +16,9 @@ I am a PhD student in Forestry and Natural Resources the Rubenstein School
 
 My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a cliff ecologist. See my website [here](http://www.cliffecology.com)
 
+#Presentations
+[r vegan presentation (April 26, 2017)](veganTutorial.html)
+
 #Homework Assignments
 
 ####Homework 1
@@ -57,6 +60,3 @@ Here is a picture of an old study site in Oregon
 ```{r}
 
 ```
-
-
-[vegan draft presentation](veganTutorial.html)

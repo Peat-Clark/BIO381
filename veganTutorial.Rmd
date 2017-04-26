@@ -110,39 +110,6 @@ Let's lay some groundwork:
 
 The goal of NMDS is to collapse information from multiple dimensions (e.g, from multiple communities, sites, etc.) into just a few, so that they can be *visualized and interpreted*. NMDS does not produce a statistical output - however we could do so (more on this later)
 
-Consider a single axis representing the abundance of a single species. Along this axis, we can plot the communities in which this species appears, based on its abundance within each.
-
-```{r}
-
-plot(0:10,0:10,type="n",axes=F,xlab="Abundance of Species 1",ylab="")
-axis(1)
-points(5,0); text(5.5,0.5,labels="community A")
-points(3,0); text(3.2,0.5,labels="community B")
-points(0,0); text(0.8,0.5,labels="community C")
-
-```
-
-Now consider a second axis of abundance, representing another species. We can now plot each community along the two axes (Species 1 and Species 2).
-
-```{r}
-plot(0:10,0:10,type="n",xlab="Abundance of Species 1",
-     ylab="Abundance of Species 2")
-points(5,5); text(5,4.5,labels="community A")
-points(3,3); text(3,3.5,labels="community B")
-points(0,5); text(0.8,5.5,labels="community C")
-```
-
-Now consider a third axis of abundance representing yet another species.
-
-```{r}
-# install.packages("scatterplot3d")
-library(scatterplot3d) # an R package for the visualization of multivariate data in a three dimensional space.
-d<-scatterplot3d(0:10,0:10,0:10,type="n",xlab="Abundance of Species 1",
-  ylab="Abundance of Species 2",zlab="Abundance of Species 3"); d
-d$points3d(5,5,0); text(d$xyz.convert(5,5,0.5),labels="community A")
-d$points3d(3,3,3); text(d$xyz.convert(3,3,3.5),labels="community B")
-d$points3d(0,5,5); text(d$xyz.convert(0,5,5.5),labels="community C")
-```
 
 The goal of NMDS is to represent the position of communities in multidimensional space as accurately as possible using a reduced number of dimensions that can be easily visualized (and to spare your brain box).
 
@@ -226,3 +193,40 @@ orditorp(example_NMDS,display="species",col="grey30",air=0.1,
    cex=1)
 ```
 
+
+
+##unused code
+####visualization of ordination
+Consider a single axis representing the abundance of a single species. Along this axis, we can plot the communities in which this species appears, based on its abundance within each.
+
+```{r}
+
+plot(0:10,0:10,type="n",axes=F,xlab="Abundance of Species 1",ylab="")
+axis(1)
+points(5,0); text(5.5,0.5,labels="community A")
+points(3,0); text(3.2,0.5,labels="community B")
+points(0,0); text(0.8,0.5,labels="community C")
+
+```
+
+Now consider a second axis of abundance, representing another species. We can now plot each community along the two axes (Species 1 and Species 2).
+
+```{r}
+plot(0:10,0:10,type="n",xlab="Abundance of Species 1",
+     ylab="Abundance of Species 2")
+points(5,5); text(5,4.5,labels="community A")
+points(3,3); text(3,3.5,labels="community B")
+points(0,5); text(0.8,5.5,labels="community C")
+```
+
+Now consider a third axis of abundance representing yet another species.
+
+```{r}
+# install.packages("scatterplot3d")
+library(scatterplot3d) # an R package for the visualization of multivariate data in a three dimensional space.
+d<-scatterplot3d(0:10,0:10,0:10,type="n",xlab="Abundance of Species 1",
+  ylab="Abundance of Species 2",zlab="Abundance of Species 3"); d
+d$points3d(5,5,0); text(d$xyz.convert(5,5,0.5),labels="community A")
+d$points3d(3,3,3); text(d$xyz.convert(3,3,3.5),labels="community B")
+d$points3d(0,5,5); text(d$xyz.convert(0,5,5.5),labels="community C")
+```

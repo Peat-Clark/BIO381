@@ -32,7 +32,9 @@ We will using a few datasets native to vegan
 
 ```{r}
 library(vegan)
-#data(package = "vegan") ## names of data sets in the package
+data(package = "vegan") ## names of data sets in the package
+data(dune) # Vegetation and Environment in Dutch Dune Meadows
+str(dune) #a data frame of observations of 30 species at 20 sites
 
 ```
 
@@ -41,9 +43,6 @@ library(vegan)
 Explore the utility of the **diversity** function
 
 ```{r}
-data(dune) # Vegetation and Environment in Dutch Dune Meadows
-str(dune) #a data frame of observations of 30 species at 20 sites
-
 diversity(dune,index = "simpson") # calculate Simpson's 1-D Index of Diversity for each site. # closer to 1 = greater diversity
 simpson <- diversity(dune, "simpson") # or assign to var.
 simpson 
@@ -66,7 +65,7 @@ Both indices are used to quantify the compositional dissimilarity between two di
 par(mfrow = c(1, 2))
 bray = vegdist(dune, "bray") 
 gower = vegdist(dune, "gower")
-hist(bray, lim = range(0.0,1.0))
+hist(bray, xlim = range(0.0,1.0))
 hist(gower, xlim = range(0.0,1.0))
 # r allows for multiple iterations of each dissimilarity index to examine #freqeuncy of differences
 ```
@@ -93,13 +92,8 @@ raremin # view smallest # of obs (site 17)
 sRare <- rarefy(dune, raremin) # now use function rarefy
 sRare #gives an "expected"rarefied" number of species (not obs) if only 15 individuals were present
 
-par(mfrow = c(1, 2))
-plot(spAbund, sRare, xlab = "Observed No. of Species", ylab = "Rarefied No. of Species") # plots actual observations by rarefied.
-rarecurve(dune, col = "blue") # produces rarefaction curves demonstrating differences in species accumulation 
 
-# squares are site numbers positioned at observed space. To "rarefy" a larger site, trace the rarefaction curve until the curve vertically corresponds with the lesser site obs. This gives you rarefied species richness
-
-# notice that rarefied numbers are generally lower than observed, as expected notice that they mostly asymptote, indicating thorough sampling
+rarecurve(dune, col = "blue") # produces rarefaction curves # squares are site numbers positioned at observed space. To "rarefy" a larger site, follow the rarefaction curve until the curve corresponds with the lesser site obs. This gives you rarefied species richness
 ```
 
 ##Non-Metric Multidimensional Scaling 
@@ -150,22 +144,22 @@ d$points3d(3,3,3); text(d$xyz.convert(3,3,3.5),labels="community B")
 d$points3d(0,5,5); text(d$xyz.convert(0,5,5.5),labels="community C")
 ```
 
-The goal of NMDS is to represent the position of communities in multidimensional space as accurately as possible using a reduced number of dimensions that can be easily visualized (and to spare your thinker).
+The goal of NMDS is to represent the position of communities in multidimensional space as accurately as possible using a reduced number of dimensions that can be easily visualized (and to spare your brain box).
 
 NMDS does not use the absolute abundances of species in communities, but rather their rank orders and as a result is a flexible technique that accepts a variety of types of data. (It's also where the "non-metric" part of the name comes from.)
 
 To run the NMDS, we will use the function **metaMDS**. The function requires only a community-by-species matrix (which we will create randomly).
 
 ```{r}
-set.seed(2) # random no. generator / way to specify seeds
+set.seed(2) # random no. generator / way to specify seeds, 2=no. of integers?
 community_matrix=matrix(
-   sample(1:100,300,replace=T),nrow=10,
+   sample(1:100,300,replace=T),nrow=10, # counts up to 100, 300 cells
    dimnames=list(paste("community",1:10,sep=""),paste("sp",1:30,sep="")))
 head(community_matrix)
 example_NMDS=metaMDS(community_matrix, # Our community-by-species matrix
                      k=2) # The number of reduced dimensions. Increase if high stress is problem. 
 
-#The stress, or the disagreement between 2-D configuration and predicted values from the regression"
+#"The stress, or the disagreement between 2-D configuration and predicted values from the regression"
 
 #A good rule of thumb: stress > 0.05 provides an excellent representation in reduced dimensions, > 0.1 is great, >0.2 is good/ok, and stress > 0.3 provides a poor representation
 
@@ -189,7 +183,9 @@ orditorp(example_NMDS,display="sites",cex=1.25,air=0.01)
 ```
 
 
-Let's suppose that communities 1-5 had some treatment applied, and communities 6-10 a different treatment. We can draw convex hulls connecting the vertices of the points made by these communities on the plot. I find this an intuitive way to understand how communities and species cluster based on treatments.
+Let's suppose that communities 1-5 had some treatment applied, and communities 6-10 a different treatment. Using **ordihull** we can draw convex hulls connecting the vertices of the points made by these communities on the plot. 
+
+This is an intuitive way to understand how communities and species cluster based on treatments.
 
 ```{r}
 treat=c(rep("Treatment1",5),rep("Treatment2",5))

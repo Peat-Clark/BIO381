@@ -6,6 +6,8 @@ output: html_document
 ---
 
 
+###*DRAFT*
+
 Using a for or while loop, write a function to calculate the number of zeroes in a numeric vector.
 
 ```{r}
@@ -23,32 +25,38 @@ Use subsetting instead of a loop to rewrite the function as a single line of cod
 
 ```{r}
 myDat <- c(0,0,10)
-vec <- sum(myDat== 0)
-vec
+vec1 <- sum(myDat== 0)
+vec1
 ```
 
 Write a function that takes as input a numeric vector, and returns as output the maximum difference between all possible pairs of elements. Be careful to ensure that your function works properly with both negative and positive numbers. For your first version of the function, create a vector that stores all possible pairwise differences and then extracts the maximum value from that list.
 
 ```{r}
-#############################################
-# FUNCTION: maxxxDif
-# takes numeric vector, determines difference between all combinations in vectors
-#
-# input: x
-# output: x
-#--------------------------------------------
-MaxPower <- function (a=c(1,2,3,4)) {
-x <-vector(mode = "numeric")
-    for (i in seq_along(a)) {
-      x <- matrix(a[i]+a[i+(a[i])])
-    }
-return(x)
-}
 
-###########################################
-MaxPower()
-a
-###
+vec <- round(runif(10),2)
+vec
+#################################################################################
+##################################################
+# FUNCTION: MaxDif ** From Alex Burnham **
+# max difference between pair of elements in vector 
+# input: numeric vector 
+# output: max difference between all possible pair of elements 
+#------------------------------------------------- 
+MaxDif <- function(myvec=vec){
+  
+  mat <- matrix(numeric(length(myvec)^2), nrow=length(myvec))
+
+for (i in seq_along(myvec)){
+  for (j in seq_along(myvec)){
+
+  mat[i,j] <- myvec[i]-myvec[j]
+
+  }
+} 
+  z <- c(mat)
+  return(list(max(abs(z)),mat))
+}
+MaxDif()
 ```
 
 ```{r}
@@ -68,10 +76,5 @@ diff <- abs(x_pairs[,1] - x_pairs[,2])
 }
 
 ```
-```{r}
-# other alex's code
 
-```
-
-```
 

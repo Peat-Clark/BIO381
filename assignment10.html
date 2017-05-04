@@ -123,21 +123,80 @@ $(document).ready(function () {
 </div>
 
 
+<div id="draft" class="section level3">
+<h3><em>DRAFT</em></h3>
 <p>Using a for or while loop, write a function to calculate the number of zeroes in a numeric vector.</p>
-<pre class="r"><code>myDat &lt;- round(runif(10), digits=2) # create a vector of random round numbers
+<pre class="r"><code>myDat &lt;- 0:10
+eVec &lt;- vector(mode=&quot;numeric&quot;)
 for (i in seq_along(myDat)) {
-  cat(&quot;loop number = &quot;,i,&quot;vector element = &quot;,myDat[i], &quot;\n&quot;)
+  if (myDat[i]==0) (eVec[i]&lt;-1) else
+    if (myDat[i]!=0) (eVec[i]&lt;-0)
+}
+eVec</code></pre>
+<pre><code>##  [1] 1 0 0 0 0 0 0 0 0 0 0</code></pre>
+<pre class="r"><code>sum(eVec)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>Use subsetting instead of a loop to rewrite the function as a single line of code.</p>
+<pre class="r"><code>myDat &lt;- c(0,0,10)
+vec1 &lt;- sum(myDat== 0)
+vec1</code></pre>
+<pre><code>## [1] 2</code></pre>
+<p>Write a function that takes as input a numeric vector, and returns as output the maximum difference between all possible pairs of elements. Be careful to ensure that your function works properly with both negative and positive numbers. For your first version of the function, create a vector that stores all possible pairwise differences and then extracts the maximum value from that list.</p>
+<pre class="r"><code>vec &lt;- round(runif(10),2)
+vec</code></pre>
+<pre><code>##  [1] 0.81 1.00 0.53 0.39 0.73 0.59 0.01 0.47 0.85 0.75</code></pre>
+<pre class="r"><code>#################################################################################
+##################################################
+# FUNCTION: MaxDif ** From Alex Burnham **
+# max difference between pair of elements in vector 
+# input: numeric vector 
+# output: max difference between all possible pair of elements 
+#------------------------------------------------- 
+MaxDif &lt;- function(myvec=vec){
+  
+  mat &lt;- matrix(numeric(length(myvec)^2), nrow=length(myvec))
+
+for (i in seq_along(myvec)){
+  for (j in seq_along(myvec)){
+
+  mat[i,j] &lt;- myvec[i]-myvec[j]
+
+  }
+} 
+  z &lt;- c(mat)
+  return(list(max(abs(z)),mat))
+}
+MaxDif()</code></pre>
+<pre><code>## [[1]]
+## [1] 0.99
+## 
+## [[2]]
+##        [,1]  [,2]  [,3]  [,4]  [,5]  [,6] [,7]  [,8]  [,9] [,10]
+##  [1,]  0.00 -0.19  0.28  0.42  0.08  0.22 0.80  0.34 -0.04  0.06
+##  [2,]  0.19  0.00  0.47  0.61  0.27  0.41 0.99  0.53  0.15  0.25
+##  [3,] -0.28 -0.47  0.00  0.14 -0.20 -0.06 0.52  0.06 -0.32 -0.22
+##  [4,] -0.42 -0.61 -0.14  0.00 -0.34 -0.20 0.38 -0.08 -0.46 -0.36
+##  [5,] -0.08 -0.27  0.20  0.34  0.00  0.14 0.72  0.26 -0.12 -0.02
+##  [6,] -0.22 -0.41  0.06  0.20 -0.14  0.00 0.58  0.12 -0.26 -0.16
+##  [7,] -0.80 -0.99 -0.52 -0.38 -0.72 -0.58 0.00 -0.46 -0.84 -0.74
+##  [8,] -0.34 -0.53 -0.06  0.08 -0.26 -0.12 0.46  0.00 -0.38 -0.28
+##  [9,]  0.04 -0.15  0.32  0.46  0.12  0.26 0.84  0.38  0.00  0.10
+## [10,] -0.06 -0.25  0.22  0.36  0.02  0.16 0.74  0.28 -0.10  0.00</code></pre>
+<pre class="r"><code>## Alex L's code
+x &lt;- rnorm(20, mean = 0, sd = 10)
+        
+maxdiff &lt;- function (x) {
+cols &lt;- rep(0,length(x)^2)
+x_pairs &lt;- data.frame(cols,cols)
+for (i in 1:length(x)){
+  for (j in 1:length(x)){
+    iter_pairs = c(x[i], x[j])
+    x_pairs[counter,] = iter_pairs
+  }
+}
+diff &lt;- abs(x_pairs[,1] - x_pairs[,2])
 }</code></pre>
-<pre><code>## loop number =  1 vector element =  0.73 
-## loop number =  2 vector element =  0.89 
-## loop number =  3 vector element =  0.47 
-## loop number =  4 vector element =  0.05 
-## loop number =  5 vector element =  0.26 
-## loop number =  6 vector element =  0.23 
-## loop number =  7 vector element =  0.06 
-## loop number =  8 vector element =  0.94 
-## loop number =  9 vector element =  0.14 
-## loop number =  10 vector element =  0.45</code></pre>
+</div>
 
 
 

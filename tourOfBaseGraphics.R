@@ -317,3 +317,110 @@ points(0.32,10)
 # first refresh plot
 segments(rep(0.32,5),seq(10,90,length=5),rep(0,5),seq(10,90,length=5))
 
+
+
+#########################################################
+#Layout Function For Visualizing Plot Space
+#############################################
+# Creating a function for illustrating plot layouts
+my.layout <- function (x=1) {
+  for (i in 1:x) plot(runif(100),type="b",
+                      col="gray",lwd=2,ann=FALSE,las=1)
+  
+  mtext("X axis label",side=1,font=2,line=3)
+  mtext("Y axis label",side=2,font=2,line=3)
+  mtext("Top Plot label",side=3,font=2,line=1)
+  mtext("Side\nPlot\nLabel",side=4,font=2,line=1,las=1)
+  mtext("BOTTOM OUTER MARGIN LABEL",side=1,font=2,line=1,cex=2,outer=TRUE)
+  mtext("SIDE OUTER MARGIN LABEL",side=2,font=2,line=1,cex=2,outer=TRUE)
+  mtext("TOP OUTER MARGIN LABEL",side=3,font=2,line=1,cex=2,outer=TRUE)
+  mtext("SIDE\nOUTER\nMARGIN\nLABEL",side=4,font=2,line=1,cex=2,outer=TRUE,las=1)
+  
+  box(which="outer",col="red",lwd=4)
+  box(which="inner",col="blue",lwd=4)
+  box(which="figure",col="darkgreen",lwd=4)
+  box(which="plot",col="goldenrod",lwd=4)
+  
+  par(opar)
+}
+############################################
+# Check out appearance with default settings
+
+my.layout(1)
+#########
+###########################################
+# Adjusting Margins of a Single Figure with mar (= lines of text)
+
+par("mar")
+
+par(mar=c(5,5,4,4))
+my.layout(1)
+##########################################
+# Adding outer plot margins with oma (= lines of text)
+
+par("oma")
+par(oma=c(3,3,3,8))
+my.layout(1)
+
+##########################################
+
+# Creating a square plot with pty (default = "m")
+
+par("pty")
+par(pty="s")
+
+my.layout(1)
+####################
+########################################
+# Using mfrow for multi-panel plots
+
+par("mfrow")
+par(mfrow=c(3,2))
+my.layout(6)
+
+# Add in your outer margins & square plot regions
+
+par("oma")
+par(oma=c(6,6,6,6))
+par(pty="s")
+par(mar=c(2,2,2,2))
+par(mfrow=c(3,4))
+my.layout(12)
+
+###############################################
+# Gaining more control with the layout function
+
+layout(matrix(1:6,nrow=3,byrow=TRUE))
+layout.show(6)
+my.layout(6)
+
+# Matrix elements give the order of filling
+layout(matrix(c(1,2,3,4,6,5),nrow=3,byrow=FALSE))
+layout.show(6)
+my.layout(6)
+
+###########################################
+# as before, outer margins can be added
+
+layout(matrix(1:6,nrow=3,byrow=TRUE))
+layout.show(6)
+par("oma")
+
+par(oma=c(4,4,4,4))
+layout.show(6)
+my.layout(6)
+
+##################################################
+# use "respect" option to square up the entire figure region
+
+layout(matrix(1:6,nrow=3,byrow=TRUE),respect=TRUE)
+layout.show(6)
+
+par(oma=c(4,4,4,4))
+layout.show(6)
+
+###################################################
+# allows for more compact figures; use with pty="s"
+
+layout(matrix(1:12,nrow=3,byrow=TRUE),respect=TRUE)
+layout.show(12)

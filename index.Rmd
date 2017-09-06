@@ -1,5 +1,5 @@
 ---
-title: "Bio381 Portfolio"
+title: "Online Repository"
 author: "Peter Clark"
 date: "January 18, 2017"
 output: 
@@ -8,18 +8,18 @@ output:
     highlight: github
 ---
 
-# Peter Clark
+## PBIO 294 ECOLOGICAL MODELLING ASSIGNMENTS
 
-## Computational Biology
+#### Assignments for 9/6/2017:
+[r introduction](Ecol_Modelling_Assignment1.R)   
+[assignment 1](Ecol_Modelling_Assignment1_Kruschke_chap_2.html)
 
-I am a PhD student in Forestry and Natural Resources the Rubenstein School
 
-My fun fact is that I enjoy plants that grow on cliffs. So much so that I am a cliff ecologist. See my website [here](http://www.cliffecology.com)
 
-#Presentations
+## BIO 381 Homework Assignments
+
+###Presentations
 [r vegan presentation (April 26, 2017)](veganTutorial.html)
-
-#Homework Assignments
 
 ####Homework 1
   

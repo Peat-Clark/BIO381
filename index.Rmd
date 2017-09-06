@@ -50,10 +50,10 @@ output:
   * [4 core kinds of statistical analyses](assignment8b.html)
 
 ####Homework 9   
-  * [Model Functions on Personal Data](assignment9.html)
+  * [Draft HW 9](assignment9.html)
 
 ####Homework 10   
-  * [For Loops](assignment10.html)
+  * [Draft HW 10](assignment10.html)
 
 Here is a picture of an old study site in Oregon
 ![Moskt Butte](mbf.jpg)

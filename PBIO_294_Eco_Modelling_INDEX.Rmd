@@ -9,6 +9,6 @@ output: html_document
 [r introduction](Ecol_Modelling_Assignment1.R)   
 [assignment 1](Ecol_Modelling_Assignment1_Kruschke_chap_2.html)
 
-#### Assignments for 9/12/2017:
-[r in class assignment](Ecol_Modelling_Assignment2.R)   
+#### Assignments for 9/13/2017:
+[r exercise](PBIO_284_R_exercise_2.html)   
 [Monty Hall Simulation](Ecol_Modelling_Monty_Hall.html)

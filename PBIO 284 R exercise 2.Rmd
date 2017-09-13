@@ -1,0 +1,64 @@
+---
+title: "PBIO 284 R exercise 2"
+author: "Peter Clark"
+date: "September 13, 2017"
+output: html_document
+---
+```{r}
+setwd("~/UVM/BIO 381 Computational Biology/Website")
+```
+
+
+1.	Read	in	the	weight	data	that	is	posted	on	webpage	as	'Weight	data'.
+
+```{r}
+weightData <- read.csv(file = "weightData.csv", header = TRUE)
+head(weightData)
+
+```
+
+2.		What	type	of	object is the	file	read	in	as?		If	it	is	not	a	data	frame,	coerce	it	to	one.
+
+```{r}
+str(weightData) # is a data.frame
+
+```
+
+3.		What	are	object/data	types	of	each	of	the	columns?
+
+```{r}
+str(weightData) 
+#gender is a factor (with 2 levels)
+# height is an integer
+# weight is an integer
+
+```
+
+
+4.	Plot	weight	(on	y	axis)	vs	height	(on	x	axis)	with	different	colored	symbols	for	each	gender.
+
+```{r}
+plot(weightData$height_in, weightData$weight_lbs, col=weightData$gender)
+
+```
+
+5.		Write	a	function	to	calculate	'10!', i.e.,	10	factorial (10 * 9 * 8 *... * 1).		Show	the	result	for	10	and	20.
+
+```{r}
+# 10 factorial
+x=10
+y=1
+for(i in 1:x){
+  y <-y*((1:x)[i])
+}
+print(y)
+
+# 20 factorial
+x=20
+y=1
+for(i in 1:x){
+  y <-y*((1:x)[i])
+}
+print(y)
+
+```

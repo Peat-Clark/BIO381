@@ -1,0 +1,43 @@
+---
+title: "BIO 381 Computational Biology"
+author: "Peter Clark"
+date: "September 13, 2017"
+output: html_document
+---
+
+###Presentations
+[r vegan presentation (April 26, 2017)](veganTutorial.html)
+
+####Homework 1
+  
+  * [Assignment 1](test.html)   
+  * [Assignment 2](http://www.cliffecology.com)   
+
+####Homework 2
+
+  * [homework 2](Homework02.html)   
+
+####Homework 3
+  * [Typhora Flowchart](Homework3Flowchart2.html)   
+  * [Beamer rmd file](Homework03_Beamer.Rmd)
+  * [Beamer PDF](Homework03_Beamer.pdf)
+  * [Old powerpoint converted](convert.pdf)
+
+####Homework 4
+  * [Using csv files in R](assignment4.html)   
+  * [Working with Regular Expressions](assignment4b.html)
+
+####Homework 5
+  * [Solving problems in r](assignment5.html)  
+
+####Homework 6 & 7   
+  * [Defining functions in r](assigment6.html)
+  
+####Homework 8   
+  * [4 core kinds of statistical analyses](assignment8b.html)
+
+####Homework 9   
+  * [Draft HW 9](assignment9.html)
+
+####Homework 10   
+  * [Draft HW 10](assignment10.html)

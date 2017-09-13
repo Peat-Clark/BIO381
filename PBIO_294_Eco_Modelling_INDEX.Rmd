@@ -1,0 +1,14 @@
+---
+title: "PBIO 294 Ecological Modelling"
+author: "Peter Clark"
+date: "September 13, 2017"
+output: html_document
+---
+
+#### Assignments for 9/6/2017:
+[r introduction](Ecol_Modelling_Assignment1.R)   
+[assignment 1](Ecol_Modelling_Assignment1_Kruschke_chap_2.html)
+
+#### Assignments for 9/12/2017:
+[r in class assignment](Ecol_Modelling_Assignment2.R)   
+[Monty Hall Simulation](Ecol_Modelling_Monty_Hall.html)

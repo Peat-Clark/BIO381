@@ -8,57 +8,13 @@ output:
     highlight: github
 ---
 
-## PBIO 294 ECOLOGICAL MODELLING ASSIGNMENTS
+##Courses and Assignments
+*Click course title for hyperlink*   
 
-#### Assignments for 9/6/2017:
-[r introduction](Ecol_Modelling_Assignment1.R)   
-[assignment 1](Ecol_Modelling_Assignment1_Kruschke_chap_2.html)
-
-#### Assignments for 9/12/2017:
-[r in class assignment](Ecol_Modelling_Assignment2.R)   
-[Monty Hall Simulation](Ecol_Modelling_Monty_Hall.html)
+* [PBIO 294 ECOLOGICAL MODELLING](PBIO_294_Eco_Modelling_INDEX.html)   
+* [BIO 381 COMPUTATIONAL BIOLOGY](BIO381_Comp_Bio_INDEX.html)   
 
 
-
-
-## BIO 381 Homework Assignments
-
-###Presentations
-[r vegan presentation (April 26, 2017)](veganTutorial.html)
-
-####Homework 1
-  
-  * [Assignment 1](test.html)   
-  * [Assignment 2](http://www.cliffecology.com)   
-
-####Homework 2
-
-  * [homework 2](Homework02.html)   
-
-####Homework 3
-  * [Typhora Flowchart](Homework3Flowchart2.html)   
-  * [Beamer rmd file](Homework03_Beamer.Rmd)
-  * [Beamer PDF](Homework03_Beamer.pdf)
-  * [Old powerpoint converted](convert.pdf)
-
-####Homework 4
-  * [Using csv files in R](assignment4.html)   
-  * [Working with Regular Expressions](assignment4b.html)
-
-####Homework 5
-  * [Solving problems in r](assignment5.html)  
-
-####Homework 6 & 7   
-  * [Defining functions in r](assigment6.html)
-  
-####Homework 8   
-  * [4 core kinds of statistical analyses](assignment8b.html)
-
-####Homework 9   
-  * [Draft HW 9](assignment9.html)
-
-####Homework 10   
-  * [Draft HW 10](assignment10.html)
 
 Here is a picture of an old study site in Oregon
 ![Moskt Butte](mbf.jpg)

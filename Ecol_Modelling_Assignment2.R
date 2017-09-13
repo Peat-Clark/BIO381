@@ -10,7 +10,7 @@ head(weightData)
 #a	data	frame,	coerce	it	to	one.
 
 str(weightData) # is a data.frame
-
+typeof(weightData)
 
 #3.		What	are	object/data	types	of	each	of	the	columns?
 
@@ -21,20 +21,20 @@ str(weightData)
 
 #4.	Plot	weight	(on	y	axis)	vs	height	(on	x	axis)	with	different	
 #colored	symbols	for	each	gender.
-plot(weightData$weight_lbs, weightData$height_in, col=weightData$gender)
+plot(weightData$height_in, weightData$weight_lbs, col=weightData$gender)
 
 #5.		Write	a	function	to	calculate	'10!', i.e.,	10	factorial 
 # (10*9*8*...*1).		Show	the	result	for	10	and	20.
 
 # 10 factorial
-x=20
+x=10
 y=1
 for(i in 1:x){
   y <-y*((1:x)[i])
 }
 print(y)
 
-# 20 factorail
+# 20 factorial
 x=20
 y=1
 for(i in 1:x){

@@ -1,0 +1,20 @@
+---
+title: "Meeting Agenda"
+author: "Peter Clark"
+date: "September 13, 2017"
+output: html_document
+---
+
+###Agenda items for 9/15/2017 meeting WIth Tony
+
+* Disertation hoops
++ Committee forming
++ Proposal and comps target date   
+
+
+
+* Farm Woodlot next steps   
+  + Lab group discussion   
+  + SAF?   
+  + Jack's project   
+  

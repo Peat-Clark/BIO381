@@ -12,3 +12,6 @@ output: html_document
 #### Assignments for 9/13/2017:
 [r exercise](PBIO_284_R_exercise_2.html)   
 [Monty Hall Simulation](Ecol_Modelling_Monty_Hall.html)
+
+#### Assignments for 9/20/2017:
+[Assigment rMarkdown](PBIO_294_9_20_2017_Homework.html)

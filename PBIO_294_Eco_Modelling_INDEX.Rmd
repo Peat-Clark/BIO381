@@ -15,3 +15,6 @@ output: html_document
 
 #### Assignments for 9/20/2017:
 [Assigment rMarkdown](PBIO_294_9_20_2017_Homework.html)
+
+#### Graduate Project proposal 10/4/2017
+[Farm Woodlot Bayesian Proposal](pbio294_Final_project_proposal.html)

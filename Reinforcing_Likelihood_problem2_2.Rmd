@@ -1,0 +1,52 @@
+---
+title: "Reinforcing likelihood problem 2.2"
+author: "Peter Clark"
+date: "October 7, 2017"
+output: html_document
+---
+
+**Problem 2:		Question.		Is	a coin	fair?		You	sample	18	coin tosses	and	observe 10	heads. Compare	the	likelihood	function	for	p	in	the	following	two	cases: A	Bernoulli	process	that	results	in	c(0,1,1,0,0,1,0,1,0,0,1,1,1,1,0,0,1,1) and	a Binomial (k=10,n=18).**
+
+
+**ii.	Plot	the	likelihood	functions	in	the	same	figure.**
+
+
+```{r}
+binomDist <- dbinom(10,18,seq(0,1, length,out = 19)) # length.out tells r the number of trails for p (1-19, or 18 trials)
+print(binomDist)
+binomDistNormal <- binomDist/max(binomDist) # normalize to 1
+
+# create bernoulli likelihood
+# this was my first attempt which is INCORRECT, but never figured out quite why
+# this is incorrect because it doesn't produce a vector of products:
+prod(dbinom(x=(c(0,1,1,0,0,1,0,1,0,0,1,1,1,1,0,0,1,1)),1, seq(0,1, length.out = 19), log=F))
+
+
+#this is my second attempt:
+#concatenate the results from flips into a variable
+bernoulliX <- c(0,1,1,0,0,1,0,1,0,0,1,1,1,1,0,0,1,1) 
+
+# this function is redudant because I couldn't incorporate theta as a sequenced variable, but this works
+bernoulliFunc <- function(x) {
+  p0 <- prod(dbinom(x,1,0))
+  p1 <- prod(dbinom(x,1,0.1))
+  p2 <- prod(dbinom(x,1,0.2))
+  p3 <- prod(dbinom(x,1,0.3))
+  p4 <- prod(dbinom(x,1,0.4))
+  p5 <- prod(dbinom(x,1,0.5))
+  p6 <- prod(dbinom(x,1,0.6))
+  p7 <- prod(dbinom(x,1,0.7))
+  p8 <- prod(dbinom(x,1,0.8))
+  p9 <- prod(dbinom(x,1,0.9))
+  p10 <- prod(dbinom(x,1,1.0))
+  return(c(p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10))
+}
+
+bernoulliDistNormal <- bernoulliFunc(bernoulliX)/max(bernoulliFunc(bernoulliX)) # normalize to 1
+
+# plot both distributions on same figure
+plot(seq(0,1, length.out=11), bernoulliDistNormal, main="Binomial (red) and Bernoulli (dots) Likelihood Functions", xlab="theta", ylab="likelihood")
+lines(seq(0,1, length.out=19),binomDistNormal, col="red")
+
+```
+

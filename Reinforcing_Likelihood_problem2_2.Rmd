@@ -12,7 +12,7 @@ output: html_document
 
 
 ```{r}
-binomDist <- dbinom(10,18,seq(0,1, length,out = 19)) # length.out tells r the number of trails for p (1-19, or 18 trials)
+binomDist <- dbinom(10,18,seq(0,1, length.out = 19)) # length.out tells r the number of trails for p (1-19, or 18 trials)
 print(binomDist)
 binomDistNormal <- binomDist/max(binomDist) # normalize to 1
 

@@ -19,5 +19,8 @@ output: html_document
 #### Graduate Project proposal 10/4/2017
 [Farm Woodlot Bayesian Proposal](pbio294_Final_project_proposal.html)
 
-## Assignment for 10/6/2017
+#### Assignment for 10/6/2017
 [Reinforcing Likelihood Concepts Homework](Reinforcing_Likelihood_Concepts_Homework_version2.html)
+
+#### Assignment for 10/20/2017
+[Reinforcing Likelihood Concepts Homework - PART II](Reinforcing_Likelihood_concepts_PLUS_Homework_10_20)

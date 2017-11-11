@@ -24,3 +24,6 @@ output: html_document
 
 #### Assignment for 10/20/2017
 [Reinforcing Likelihood Concepts Homework - PART II](Reinforcing_Likelihood_concepts_PLUS_Homework_10_20)
+
+#### Assignment for 11/10/2017
+[MCMC sampler for linear regression](MCMC_sampler_for_linear_regression_using_BB_template.html)

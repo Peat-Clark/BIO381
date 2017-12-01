@@ -27,3 +27,6 @@ output: html_document
 
 #### Assignment for 11/10/2017
 [MCMC sampler for linear regression](MCMC_sampler_for_linear_regression_using_BB_template.html)
+
+#### Assignment for 12/1/2017
+[GLM Exercise and Homework](pbio 294 GLM exercise_12012017.rmd)
